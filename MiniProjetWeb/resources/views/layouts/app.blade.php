@@ -11,70 +11,75 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/iconsite.png">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(["resources/js/script.js","resources/CSS/style.css"])
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    <header class="header" id="header">
+        <div class="WebSiteLogo">
+            <a href ="{{ route('welcome') }}"> 
+                <!-- Go to Main page when clicking on the logo -->  
+                <img src="{{URL('assets/FST.png')}}" alt="Logo FST">
+            </a>
+        </div>        
+        <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+        @if (Route::has('login'))
+            @auth
+                <div class="nav-btns">
+                    <div class="Home">
+                        <a class="dropdown-item" href="{{ route('auth.home') }}">
+                         {{ __('Home') }}
+                         <!-- Instead of recreating a newroute, just using the admin route to check for all the users
+                            Since its checking if the user is an admin anyway, and redirect the admin in hes own pannel
+                            at the end.-->
+                        </a>
+                    <a class="loga" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+            @else
+            <div class="login-modal">
+                <div class="login-bx">
+                    <h3 class="login-title">S'authentifier</h3>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="inputBx">
+                            <input name="email" placeholder="email institutionnel" id="email" type="email" class="@error('email') is-invalid @enderror" value="{{ old('email') }}">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        </div>
+                        <div class="inputBx">
+                            <input  name="password" placeholder="mot de passe" id="password" type="password" class="@error('password') is-invalid @enderror">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            {{ __('Login') }}
+                        </button>
+                    </form>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn btn">Login</button>
+                <div class="nav-toggler"><i class='bx bx-menu-alt-right'></i></div>
+        @endauth
+        @endif
+        </div>
+    </header>               
+    <main class="py-4">
+        @yield('content')
+    </main>
 </body>
 </html>

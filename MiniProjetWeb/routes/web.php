@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome'); //Gave a name to it to use it as an automatic redirection
 
 Auth::routes();
 

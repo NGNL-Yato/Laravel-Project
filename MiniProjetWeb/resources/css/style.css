@@ -1,0 +1,493 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;padding: 0;box-sizing: border-box;
+    text-decoration: none;
+
+}
+
+body {
+    overflow-x: hidden;
+    position: relative;
+
+}
+
+.login-modal.show {
+    visibility: visible;
+}
+
+
+.login-modal {
+    position: fixed; /* so the background stays even when we scroll*/
+    top: 0;
+    left: 0;
+    width: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    /* display: block; */
+}
+
+.login-modal::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 98;
+}
+
+.login-bx {
+    z-index: 100;
+    width: 350px;
+    height: 350px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    
+}
+
+.login-bx .inputBx {
+    width: 250px;
+    height: 50px;
+    margin: 1.5rem 0;
+}
+
+.login-bx .inputBx input {
+    width: 100%;
+    height: 100%;
+}
+
+.login-bx .submit-btn {
+    padding: .5rem 1.5rem;
+    text-align: center;
+    align-content: center;
+}
+
+.btn {
+    padding: .5rem 1rem;
+}
+
+.nav-toggler {
+    font-size: 2rem;
+}
+
+.logo {
+    font-size: 2rem;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+.header {
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 2%;
+}
+
+.header .nav-btns {
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+
+}
+
+/* START HERO */
+
+.hero {
+    min-height: 100vh;
+    position: relative;
+    background-image: URL('../../public/assets/hero.png');
+    background-size: cover;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin: auto;
+}
+
+.hero::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    background: #000;
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    z-index: -1;
+}
+
+.main-title {
+    font-size: 4rem;
+    color: #fff;
+    text-transform: capitalize;
+    text-align: center;
+    margin: 0 4rem;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.departements {
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+
+}
+.departements .departements-title {
+    font-size:2rem ;
+    letter-spacing: .2rem;
+}
+.departements ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.departements li {
+    padding: .7rem 2.5rem;
+    background-color: #429ef5;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.departements li:hover {
+    background-color: #005eb7;
+}
+
+/* START ANNOUNCEMENTS */
+
+.announcements {
+    min-height: 100vh;
+
+}
+
+.section-title {
+    border-left: .3rem solid #429ef5 ;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    padding-left: .5rem;
+}
+
+
+.announcements .post {
+    display: flex;
+    height: 200px;
+    margin: 2rem 0;
+    background-color: #b8a40d;
+    border-radius: 20px;
+}
+
+
+
+.announcements .post-title {
+    font-size: 1.5rem;
+}
+
+.announcements  .post-date {
+    color: gray;
+}
+
+.announcements .post-text {
+    color: gray;
+}
+.announcements .post .post-info {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: flex-start;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+    gap: 1rem;
+
+}
+
+.announcements .post .imgBx {
+    width:40%;
+}
+.announcements .post .imgBx img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============== ETUDIANT INTERFACE ========== */ 
+
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #429ef5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar .user-box {
+    width: 80%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    color: #ffff;
+    font-weight: 700;
+}
+
+.sidebar .user-box .user-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.sidebar .user-box .user-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.sidebar ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;
+    padding-top: 5rem;
+    list-style: none;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 800;
+}
+
+.sidebar ul li a.active {
+    position: relative;
+    padding: .5rem 0;
+}
+
+.sidebar ul li a.active::after {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    border-radius: 10px;
+
+}
+
+
+
+.main-etudiant {
+    height: 100vh;
+    width: 80%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    
+}
+
+/* ===
+    Announces Box 
+ === */
+
+/* .main-etudiant div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+} */
+
+
+.announces-box .section-container {
+    margin: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* visibility: hidden; */
+}
+
+
+.announce-post {
+    width: 49%;
+    height: 300px;
+    border-radius: 10px;
+    border: 2px solid #cfcfcf;
+    display: flex;
+    flex-direction: column;
+}
+
+.announce-post .top-side .img-box {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    right: 5%;
+    bottom: -50%;
+
+}
+
+.announce-post .top-side {
+    height: 30% ;
+    width: 100%;
+    background-color: #b8a40d;
+    /* display: flex; */
+    position: relative;
+    padding: 2rem;
+}
+
+.announce-post .top-side .announce-prof {
+    font-size: .8rem ;
+    padding: .5rem 0;
+}
+
+.announce-post .bottom-side {
+    height: 70%;
+    width: 100%;
+}
+
+.announce-post .bottom-side {
+    padding: 20px;
+}
+
+
+.announce-post .top-side .img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ==
+Faire un demande 
+== */
+
+.faire-demande {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.faire-demande .section-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div .section-title {
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+.faire-demande form {
+    display: grid;
+    gap: 3rem;
+}
+
+.faire-demande input {
+    width: 500px;
+    height: 40px;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.faire-demande textarea {
+    border-radius: 10px;
+}
+
+.faire-demande .inputBx {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+/* Emploi du temps */
+
+#emploiSection {
+    position: absolute; 
+    margin: 0;
+    border :0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.emploi-temps {
+    border-collapse: collapse;
+}
+
+.emploi-temps, .emploi-temps th, .emploi-temps td {
+    border: 1px solid #000;
+}
+
+.emploi-temps th {
+    background-color: #429ef5;
+}
+
+.emploi-temps th, .emploi-temps td {
+    width: 100px;
+    text-align: center; /* Center aligns the text */
+}
+.emploi-temps th:empty, .emploi-temps td:empty {
+    background-color: transparent;
+    border: none !important;
+}
+
+.WebSiteLogo img {
+    width: auto; /* Adjust width automatically to maintain aspect ratio */
+    height: auto; /* Adjust height automatically to maintain aspect ratio */
+    max-width: 100%; /* Ensures the image is not bigger than its container */
+}
+
+/* Default size for viewports wider than 600px */
+@media (min-width: 601px) {
+    .WebSiteLogo img {
+        height: 100px; /* Set height, and let width adjust automatically */
+    }
+}
+
+/* Adjust size for viewports 600px wide or less */
+@media (max-width: 600px) {
+    .WebSiteLogo img {
+        height: 120px; /* Set height, and let width adjust automatically */
+    }
+}
+
+
