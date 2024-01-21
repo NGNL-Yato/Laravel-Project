@@ -8,6 +8,7 @@
                 <th>Role</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach ($users as $user)
                 <tr>
@@ -20,3 +21,4 @@
         </tbody>
     </table>
 </div>
+

@@ -13,12 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
     </div>
 </div>
-@include('Users')
+@include('Educational_Service.Users')
+{{-- To use later when interface is implemented with an onclick event --}}
+
+{{--Include the Users page to load only the page instead of loading the whole content of the admin--}}
 @endsection
