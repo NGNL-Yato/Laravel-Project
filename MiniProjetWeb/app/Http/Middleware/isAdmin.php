@@ -29,8 +29,13 @@ class isAdmin
                 return redirect()->route('Department_chief.home');
             } elseif ($role == 5 && $currentRouteName != 'Educational_service.home') {
                 return redirect()->route('Educational_service.home');
+            } elseif ($role == 0 && $currentRouteName != 'auth.home') {
+                return redirect()->route('auth.home');
             }
+            return $next($request);
+        } else {
+            return redirect()->route('welcome');
         }
-        return $next($request);
+        //updated middleware to redirect when not connected to the home page
     }
 }
