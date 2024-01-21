@@ -28,4 +28,4 @@ Route::get('Sector_responsible/home', [App\Http\Controllers\Sector_responsible\H
 Route::get('Department_chief/home', [App\Http\Controllers\Department_chief\HomeController::class, 'index'])->name('Department_chief.home');
 });
 
-Route::get('Educational_Service/home', [App\Http\Controllers\Tables\UserController::class, 'listUsers']);
+Route::get('Educational_Service/users', [App\Http\Controllers\Tables\UserController::class, 'listUsers']);
