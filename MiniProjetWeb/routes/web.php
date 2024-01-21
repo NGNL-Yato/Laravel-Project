@@ -27,3 +27,5 @@ Route::get('Student/home', [App\Http\Controllers\Student\HomeController::class, 
 Route::get('Sector_responsible/home', [App\Http\Controllers\Sector_responsible\HomeController::class, 'index'])->name('Sector_responsible.home');
 Route::get('Department_chief/home', [App\Http\Controllers\Department_chief\HomeController::class, 'index'])->name('Department_chief.home');
 });
+
+Route::get('Educational_Service/home', [App\Http\Controllers\Tables\UserController::class, 'listUsers']);

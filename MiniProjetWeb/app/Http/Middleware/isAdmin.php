@@ -27,8 +27,8 @@ class isAdmin
                 return redirect()->route('Sector_responsible.home');
             } elseif ($role == 4 && $currentRouteName != 'Department_chief.home') {
                 return redirect()->route('Department_chief.home');
-            } elseif ($role == 5 && $currentRouteName != 'Educational_service.home') {
-                return redirect()->route('Educational_service.home');
+            } elseif ($role == 5 && $currentRouteName != 'Educational_Service.home') {
+                return redirect()->route('Educational_Service.home');
             } elseif ($role == 0 && $currentRouteName != 'auth.home') {
                 return redirect()->route('auth.home');
             }
