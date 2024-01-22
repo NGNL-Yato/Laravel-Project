@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome'); //Gave a name to it to use it as an automatic redirection
 
+Route::get('Educational_Service/indexformations', function () {
+    return view('Educational_Service/indexformations');
+})->name('indexformations');
+
 Auth::routes();
 
 Route::middleware(['isAdmin'])->group(function () {

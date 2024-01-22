@@ -20,7 +20,7 @@
 
 </head>
 <body>
-  <div class = "main_container">
+    <div id="mainContent" class="main_container">
 
 <nav class="sidebar">
     <div class="sidebar-top-wrapper">

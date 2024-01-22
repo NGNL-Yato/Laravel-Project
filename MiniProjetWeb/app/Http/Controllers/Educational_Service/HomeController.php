@@ -13,8 +13,7 @@ class HomeController extends Controller
         }
         public function home()
         {
-            $users = User::all();
-            return view('educational_service.users', compact('users'));
+            return view ('educational_service.indexusers');
         }
         
         
