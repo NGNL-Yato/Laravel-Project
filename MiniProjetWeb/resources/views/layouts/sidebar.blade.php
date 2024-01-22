@@ -17,8 +17,12 @@
     <!-- Scripts -->
     @vite(["resources/js/sidebar-script.js","resources/CSS/sidebar-style.css"])
     @vite(["resources/js/script.js","resources/CSS/style.css"])
+    @vite(["resources/CSS/home.css"])
+
 </head>
 <body>
+  <div class = "main_container">
+
 <nav class="sidebar">
     <div class="sidebar-top-wrapper">
       <div class="sidebar-top">
@@ -200,8 +204,11 @@
     
   </nav>
   <main class="py-4">
-    @yield('content')
-    <!-- Calls the layout thats gonna be added here -->
+    <div class = "side_container">
+      @yield('content')
+      <!-- Calls the layout thats gonna be added here -->
+    </div>
+  </div>
 </main>
 </body>
 </html>

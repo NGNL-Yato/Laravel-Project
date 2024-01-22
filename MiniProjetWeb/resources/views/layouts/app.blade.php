@@ -14,9 +14,11 @@
     <link rel="icon" type="image/x-icon" href="assets/iconsite.png">
 
     <!-- Scripts -->
+    @vite(["resources/CSS/home.css"])
     @vite(["resources/js/script.js","resources/CSS/style.css"])
 </head>
 <body>
+    <div class = "main_container">
     <header class="header" id="header">
         <div class="WebSiteLogo">
             <a href ="{{ route('welcome') }}"> 
@@ -82,5 +84,6 @@
         @yield('content')
         <!-- Calls the layout thats gonna be added here -->
     </main>
+    </div>
 </body>
 </html>

@@ -37,4 +37,6 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
     }
+    const EDUCATIONAL_SERVICE_USERS = '/Educational_Service/users';
+
 }
