@@ -1,4 +1,6 @@
 @extends('layouts.sidebar')
+@extends('Educational_Service.home')
+@section('content')
 
 <div class = "container">
     <div>
@@ -66,6 +68,6 @@
         </div>
     </div>
 
-    @extends('Educational_Service.register')
-    @extends('Educational_Service.home')
+    @include('Educational_Service.register')
 </div>
+@endsection

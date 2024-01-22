@@ -123,9 +123,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editFiliereFormContent').action = editFiliereFormAction;
             document.getElementById('editNomFiliere').value = nomFiliere;
             document.getElementById('editAbreviation').value = abreviation;
-            document.getElementById('editDepartementId').value = departementId;
-            document.getElementById('editFormationId').value = formationId;
-            document.getElementById('editChefId').value = chefId;
+
+            setSelectedValue('editDepartementId', departementId);
+            setSelectedValue('editFormationId', formationId);
+            setSelectedValue('editChefId', chefId);
 
             // Show the edit form
             document.getElementById('editFiliereForm').style.display = 'block';
@@ -138,6 +139,17 @@ document.addEventListener('DOMContentLoaded', function() {
         form.style.display = form.style.display === 'none' ? 'block' : 'none';
     });
 });
+
+function setSelectedValue(selectId, value) {
+    var select = document.getElementById(selectId);
+    for (var i = 0; i < select.options.length; i++) {
+        if (select.options[i].value == value) {
+            select.options[i].selected = true;
+            break;
+        }
+    }
+}
+
 
 </script>
 @endsection
