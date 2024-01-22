@@ -10,6 +10,9 @@
                 <a href="{{URL('Educational_Service/filiere')}}" class="link-block">Filières</a>
             </div>
             <div class="link-container col-md-4">
+                <a href="{{URL('Educational_Service/departement')}}" class="link-block">Départements</a>
+            </div>
+            <div class="link-container col-md-4">
                 <a href="{{URL('Educational_Service/info_filiere')}}" class="link-block">Informations Relatives aux filières</a>
             </div>
         </div>

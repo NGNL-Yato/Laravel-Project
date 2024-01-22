@@ -327,3 +327,15 @@
       width: 100%;
     }
   }
+  .users_educational_service_div {
+    color: brown;
+}
+
+.py-4 {
+    margin-left: 25% ;
+
+}
+
+#toggleFormButton {
+    margin-left: 25%;
+}

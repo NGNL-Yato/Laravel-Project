@@ -14,13 +14,6 @@ class FormationController extends Controller
         $formations = Formation::all();
         return view('educational_service.formation', compact('formations'));
     }
-
-    // Show the form for creating a new resource.
-    public function create()
-    {
-        return view('formation.create');
-    }
-
     // Store a newly created resource in storage.
     public function store(Request $request)
     {
@@ -53,4 +46,5 @@ class FormationController extends Controller
     {
         $formation->delete();
         return redirect()->route('formations.index');
-    }}
+    }
+}

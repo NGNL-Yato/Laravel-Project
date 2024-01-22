@@ -41,7 +41,8 @@
       </svg>
       <span class="link hide">Salle</span>
     </a>
-  </li>  <li>
+  </li>  
+  <li>
     <a href="{{URL('Educational_Service/users')}}" data-id="emploi" title="emploi" class="tooltip">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -54,7 +55,8 @@
       </svg>
       <span class="link hide">Emploi du temps</span>
     </a>
-  </li>  <li>
+  </li>  
+  <li>
     <a href="{{URL('Educational_Service/users')}}" data-id="emploi" title="emploi" class="tooltip">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
