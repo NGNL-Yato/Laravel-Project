@@ -11,6 +11,7 @@ class UserController extends Controller
 {
     public function listUsers()
     {
+
         $users = User::all();
         return view('Educational_Service.home', compact('users'));
     }

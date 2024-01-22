@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <!-- U extends the layout to add the top layout in all pages -->
+
 @section('content')
 <!-- the section part is added to include pages inside the layouts -->
     <body class="antialiased">

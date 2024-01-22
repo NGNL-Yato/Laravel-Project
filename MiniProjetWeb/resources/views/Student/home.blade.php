@@ -1,25 +1,53 @@
 @vite(["resources/js/etudiant-script.js","resources/CSS/style.css"])
+@extends("layouts.sidebar")
+@section("navLinks")
+<li>
+    <a href="http://localhost:8000/Professor/home/emploi" data-id="emploi" title="emploi" class="tooltip">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
+        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 4h6v8h-6z" />
+        <path d="M4 16h6v4h-6z" />
+        <path d="M14 12h6v8h-6z" />
+        <path d="M14 4h6v4h-6z" />
+      </svg>
+      <span class="link hide">Les Announces</span>
+      <span class="tooltip__content">Les Announces</span>
+    </a>
+  </li>
+    <li>
+      <a href="http://localhost:8000/Professor/home/emploi" data-id="emploi" title="emploi" class="tooltip">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
+          height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M4 4h6v8h-6z" />
+          <path d="M4 16h6v4h-6z" />
+          <path d="M14 12h6v8h-6z" />
+          <path d="M14 4h6v4h-6z" />
+        </svg>
+        <span class="link hide">Emploi de temps</span>
+        <span class="tooltip__content">Emploi de temps</span>
+      </a>
+    </li>
+    <li>
+      <a href="http://localhost:8000/Professor/home/emploi" data-id="emploi" title="emploi" class="tooltip">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
+          height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M4 4h6v8h-6z" />
+          <path d="M4 16h6v4h-6z" />
+          <path d="M14 12h6v8h-6z" />
+          <path d="M14 4h6v4h-6z" />
+        </svg>
+        <span class="link hide">Faire une demande</span>
+        <span class="tooltip__content">Faire une demande</span>
+      </a>
+    </li>
+@endsection
 
-<body class="body-etudiant">
-    <nav class="sidebar">
-        <div class="WebSiteLogo">
-            <a href ="{{ route('welcome') }}"> 
-                <!-- Go to Main page when clicking on the logo -->  
-                <img src="{{URL('assets/FST.png')}}" alt="Logo FST">
-            </a>
-        </div>
-        <ul>
-            <li><a href="#" id="announces" data-id="announces"  class="active">Annonces</a></li>
-            <li><a href="#"  id="emploi" data-id="emploi" class="">Emploi du temps</a></li>
-            <li><a href="#" id="demande" data-id="demande" class="">Faire un demande</a></li>
-        </ul>
-        <div class="user-box">
-            <div class="user-img">
-                <img src="https://placehold.jp/3d4070/ffffff/150x150.png" alt="">
-            </div>
-            <p class="user-id">UserName</p>
-        </div>
-    </nav>
     <main class="main-etudiant">
 
         <div class="announces-box" id="announcesSection">
