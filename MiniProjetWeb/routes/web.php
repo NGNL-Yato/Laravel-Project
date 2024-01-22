@@ -72,4 +72,9 @@ Route::post('/Educational_Service/filiere', [App\Http\Controllers\Tables\Filiere
 Route::put('/Educational_Service/filiere/{filiere}', [App\Http\Controllers\Tables\FiliereController::class, 'update'])->name('filieres.update');
 Route::delete('/Educational_Service/filiere/{filiere}', [App\Http\Controllers\Tables\FiliereController::class, 'destroy'])->name('filieres.destroy');
 
-// Filiere View for the Educational_Service View
+// Description_Filiere View for the Educational_Service View
+Route::get('/Educational_Service/info_filiere', [App\Http\Controllers\Tables\DescriptionFormationController::class, 'ListAllDescriptionFormation'])->name('description_formation.index');
+Route::post('/Educational_Service/info_filiere', [App\Http\Controllers\Tables\DescriptionFormationController::class, 'store'])->name('description_formation.store');
+Route::put('/Educational_Service/info_filiere/{id}', [App\Http\Controllers\Tables\DescriptionFormationController::class, 'update'])->name('description_formation.update');
+Route::delete('/Educational_Service/info_filiere/{id}', [App\Http\Controllers\Tables\DescriptionFormationController::class, 'destroy'])->name('description_formation.destroy');
+
