@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\Educational_Service;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index() {
-        return view('Educational_Service.users');
+        return view('Educational_Service.home');
         }
+        public function home()
+        {
+            $users = User::all();
+            return view('educational_service.users', compact('users'));
+        }
+        
+        
 }

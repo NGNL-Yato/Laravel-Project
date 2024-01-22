@@ -12,7 +12,7 @@ class UserController extends Controller
     public function listUsers()
     {
         $users = User::all();
-        return view('Educational_Service.home', compact('users'));
+        return view('Educational_Service.users', compact('users'));
     }
     public function destroy(User $user)
     {

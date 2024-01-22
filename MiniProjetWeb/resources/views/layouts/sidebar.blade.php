@@ -1,4 +1,3 @@
-{{$user = auth()->user();}}
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -26,11 +25,9 @@
 <nav class="sidebar">
     <div class="sidebar-top-wrapper">
       <div class="sidebar-top">
-        <a href="#" class="logo__wrapper">
-          <img src="./images/fstt.png" alt="Logo" class="logo-small">
-          <span class="hide company-name">
-            FST Tanger
-          </span>
+        <a href ="{{ route('welcome') }}" class="logo__wrapper">
+          <img src="{{URL('assets/FST-Tanger.png')}}" alt="Logo" class="logo-small">
+          <span class="hide company-name"> FST Tanger</span>
         </a>
       </div>
       <button class="expand-btn" type="button">
@@ -52,8 +49,8 @@
     </div> -->
     <div class="sidebar-links">
       <ul>
-      @yield("navLinks")
-        </ul>
+        @yield("navLinks")
+      </ul>
 {{-- 
       <ul>
         <li>
@@ -163,10 +160,11 @@
     </div>
     <div class="sidebar__profile">
       <div class="avatar__wrapper">
-        <img class="avatar" src="assets/profile.png" alt="Joe Doe Picture">
+        <img class="avatar" src="{{URL('assets/character.png')}}" alt="Joe Doe Picture">
         <div class="online__status"></div>
       </div>
       <div class="avatar__name hide">
+        <div class = "Hidden_request " style = "display: none">{{$user = auth()->user();}}        </div>
         <div class="user-name">{{$user->name}}</div>
         <div class="email">{{$user->email}}</div>
       </div>

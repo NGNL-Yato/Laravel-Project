@@ -1,8 +1,10 @@
+@extends('layouts.sidebar')
+
 <div class = "users_educational_service_div">
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>ID</th> 
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
@@ -61,6 +63,6 @@
             <button type="button" class="cancel-btn">Cancel</button>
         </form>
     </div>
-    @include('Educational_Service.register')
+    @extends('Educational_Service.register')
+    @extends('Educational_Service.home')
 </div>
-

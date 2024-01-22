@@ -1,3 +1,11 @@
+
+
+
+/* ------------------------------------------------------------------------------------------------------------*/
+/* --------------------------------------Educational_Service Function------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------------------*/
+
+//Users.blade.php Functions 
 document.addEventListener('DOMContentLoaded', function () {
     var toggleButton = document.getElementById('toggleFormButton');
     var formLayout = document.getElementById('formLayout');
@@ -55,3 +63,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
