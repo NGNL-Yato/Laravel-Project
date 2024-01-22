@@ -1,9 +1,9 @@
 <button id="toggleFormButton">Add New User</button>
 
-<div id="formLayout" class="form-layout">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+<div id="formLayoutt" class="form-layoutt">
+    <div class="roww justify-content-centerr">
+        <div class="col-md-88">
+            <div class="cardd">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="form-container">
@@ -83,4 +83,7 @@
     </div>
 </div>
 {{--<script type="test/javascript" src="../resources/js/home.js"></script>--}}
+
+{{-- @vite(["resources/js/home.js"]) --}}
+@vite(["resources/js/users-form.js"])
 @vite(["resources/js/home.js"])
