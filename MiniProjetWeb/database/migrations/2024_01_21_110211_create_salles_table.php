@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('salles', function (Blueprint $table) {
             $table->id();
-            $table->integer('num_salle');
+            $table->integer('type_salle');
             $table->string('nom_salle');
-            $table->foreignId('id_departement')->constrained('departements')->nullable();
+            $table->foreignId('id_departement')->nullable()->constrained('departements');
             $table->timestamps();
         });        
     }

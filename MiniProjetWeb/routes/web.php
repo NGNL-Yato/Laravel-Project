@@ -21,6 +21,10 @@ Route::get('Educational_Service/indexformations', function () {
     return view('Educational_Service/indexformations');
 })->name('indexformations');
 
+Route::get('Educational_Service/indexSalles', function () {
+    return view('Educational_Service/indexSalles');
+})->name('indexsalle');
+
 Auth::routes();
 
 // Need to recheck the routes for each page 
@@ -78,3 +82,18 @@ Route::post('/Educational_Service/info_filiere', [App\Http\Controllers\Tables\De
 Route::put('/Educational_Service/info_filiere/{id}', [App\Http\Controllers\Tables\DescriptionFormationController::class, 'update'])->name('description_formation.update');
 Route::delete('/Educational_Service/info_filiere/{id}', [App\Http\Controllers\Tables\DescriptionFormationController::class, 'destroy'])->name('description_formation.destroy');
 
+// Class View for the Educational_Service View
+Route::get('/Educational_Service/class', [App\Http\Controllers\Tables\ClasseController::class, 'ListALLClass'])->name('classe.index');
+Route::post('/Educational_Service/class', [App\Http\Controllers\Tables\ClasseController::class, 'store'])->name('classe.store');
+Route::put('/Educational_Service/class/{class}', [App\Http\Controllers\Tables\ClasseController::class, 'update'])->name('classe.update');
+Route::delete('/Educational_Service/class/{class}', [App\Http\Controllers\Tables\ClasseController::class, 'destroy'])->name('classe.destroy');
+
+// ClassDepartment for the Educational_Service View
+
+// Salle Routes
+Route::get('Educational_Service/Salle', [App\Http\Controllers\Tables\SalleController::class, 'ListALLSalle'])->name('salle.index');
+Route::get('Educational_Service/Salle/create', [App\Http\Controllers\Tables\SalleController::class, 'create'])->name('salle.create');
+Route::post('Educational_Service/Salle', [App\Http\Controllers\Tables\SalleController::class, 'store'])->name('salle.store');
+Route::put('Educational_Service/Salle/{salle}', [App\Http\Controllers\Tables\SalleController::class, 'update'])->name('salle.update');
+Route::delete('Educational_Service/Salle/{salle}', [App\Http\Controllers\Tables\SalleController::class, 'destroy'])->name('salle.destroy');
+Route::get('Educational_Service/Salle/filterByDepartment', [App\Http\Controllers\Tables\SalleController::class, 'filterByDepartment'])->name('salle.filterByDepartment');
