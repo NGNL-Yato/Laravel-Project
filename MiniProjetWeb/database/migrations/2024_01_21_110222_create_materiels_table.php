@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type_materiel');
             $table->string('etat_materiel');
-            $table->foreignId('id_class')->constrained('classes');
+            $table->foreignId('id_salle')->constrained('salles');
             $table->timestamps();
         });        
     }

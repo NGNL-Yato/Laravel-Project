@@ -14,25 +14,32 @@ class SalleController extends Controller
     public function ListALLSalle(Request $request)
     {
         $type = $request->query('type', 'default');
-        $departements = Departement::all();
-    
+
         if ($type == 'departement') {
+            // Fetch salles that are related to a departement
             $salles = Salle::whereHas('departement')->with('departement')->get();
+            $departements = Departement::all(); // Fetch all departments for the dropdown
+        } elseif ($type == 'service_pedagogique') {
+            // Fetch salles that are NOT related to any departement
+            $salles = Salle::doesntHave('departement')->get();
+            $departements = collect(); // Empty collection, as it's not needed for this type
         } else {
+            // Default behavior, possibly fetch all salles without any condition
             $salles = Salle::all();
+            $departements = Departement::all();
         }
-    
         return view('Educational_Service.salle', compact('salles', 'type', 'departements'));
     }
     
     // Store a newly created salle
-    public function store(Request $request)
+    public function store(Request $request) // Add
     {
         $validatedData = $request->validate([
             'type_salle' => 'required|string',
             'nom_salle' => 'required|string',
-            'id_departement' => 'nullable|exists:departements,id',
+            'id_departement' => 'nullable|exists:departements,id', // Updated this line
         ]);
+        
         Salle::create($validatedData);
         return redirect()->route('salle.index')->with('success', 'Salle added successfully');
     }
@@ -42,15 +49,16 @@ class SalleController extends Controller
         $validatedData = $request->validate([
             'type_salle' => 'required|string',
             'nom_salle' => 'required|string',
-            'id_departement' => 'nullable|exists:departements,id',
-        ]);        
+            'id_departement' => 'nullable|exists:departements,id', // Updated this line
+        ]);
+        
         $salle = Salle::findOrFail($id);
         $salle->update($validatedData);
         return redirect()->route('salle.index')->with('success', 'Salle updated successfully');
     }
 
     // Remove the specified salle
-    public function destroy($id)
+    public function destroy($id) //delete
     {
         $salle = Salle::findOrFail($id);
         $salle->delete();

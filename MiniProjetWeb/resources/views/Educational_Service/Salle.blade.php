@@ -1,5 +1,6 @@
 @extends('layouts.sidebar')
 
+
 @section('content')
 <div class="container">
     <div class="salle_div">
@@ -9,7 +10,7 @@
                 <tr>
                     <th>Type Salle</th>
                     <th>Nom Salle</th>
-                    @if($type == 'departement')
+                    @if($type == 'departement' || $type == 'default')
                         <th>Nom Departement</th>
                     @endif
                     <th>Actions</th>
@@ -17,29 +18,27 @@
             </thead>
             <tbody>
                 @foreach($salles as $salle)
-                <tr>
-                    <td>{{ $salle->type_salle }}</td>
-                    <td>{{ $salle->nom_salle }}</td>
-                    @if($type == 'departement' && isset($salle->departement))
-                        <td>{{ $salle->departement->nom_departement }}</td>
-                    @elseif($type == 'departement')
-                        <td>N/A</td>
-                    @endif
-                    <td>
-                        <!-- Edit Button -->
-                        <button class="editSalleButton" 
-                                data-id="{{ $salle->id }}"
-                                data-type-salle="{{ $salle->type_salle }}"
-                                data-nom-salle="{{ $salle->nom_salle }}">Edit</button>
-
-                        <!-- Delete Button -->
-                        <form action="{{ route('salle.destroy', $salle->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $salle->type_salle }}</td>
+                        <td>{{ $salle->nom_salle }}</td>
+                        @if($type == 'departement' || $type == 'default')
+                            <td>{{ optional($salle->departement)->nom_departement ?? 'N/A' }}</td>
+                        @endif
+                        <td>
+                            <!-- Edit Button -->
+                            <button class="editSalleButton" 
+                                    data-id="{{ $salle->id }}"
+                                    data-type-salle="{{ $salle->type_salle }}"
+                                    data-nom-salle="{{ $salle->nom_salle }}">Edit</button>
+        
+                            <!-- Delete Button -->
+                            <form action="{{ route('salle.destroy', $salle->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
@@ -51,10 +50,10 @@
                 @method('PUT')
                 <input type="text" id="editTypeSalle" name="type_salle">
                 <input type="text" id="editNomSalle" name="nom_salle">
-                @if($type == 'departement')
+                @if($type == 'departement' || $type == 'default')
                     <!-- Form for Selecting a Department -->
                     <label for="editDepartement">Choose a Department:</label>
-                    <select name="edit_departement_id" id="editDepartement" class="form-control">
+                    <select name="id_departement" id="departement" class="form-control">
                         @foreach($departements as $departement)
                             <option value="{{ $departement->id }}">{{ $departement->nom_departement }}</option>
                         @endforeach
@@ -70,10 +69,10 @@
                 @csrf
                 <input type="text" name="type_salle" placeholder="Type Salle">
                 <input type="text" name="nom_salle" placeholder="Nom Salle">
-                @if($type == 'departement')
+                @if($type == 'departement' || $type == 'default')
                     <!-- Form for Selecting a Department -->
                     <label for="departement">Choose a Department:</label>
-                    <select name="departement_id" id="departement" class="form-control">
+                    <select name="id_departement" id="departement" class="form-control">
                         @foreach($departements as $departement)
                             <option value="{{ $departement->id }}">{{ $departement->nom_departement }}</option>
                         @endforeach
@@ -82,7 +81,6 @@
                 <button type="submit">Create</button>
                 <button type="button" class="cancel-btn">Cancel</button>
             </form>
-            
         </div>
 
         <!-- Button to Show/Hide Creation Form -->
