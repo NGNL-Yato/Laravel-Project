@@ -10,8 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var toggleButton = document.getElementById('toggleFormButton');
     var formLayout = document.getElementById('formLayout');
     var formContainer = document.querySelector('.form-container'); // Assuming your form is in a container with this class
-
+    var demandeBtn = document.getElementById("faireDemande")
     toggleButton.addEventListener('click', function () {
+        formLayout.style.display = 'block';
+    });
+
+    demandeBtn.addEventListener('click', function () {
         formLayout.style.display = 'block';
     });
 

@@ -25,6 +25,20 @@ Route::get('Educational_Service/indexSalles', function () {
     return view('Educational_Service/indexSalles');
 })->name('indexsalle');
 
+
+
+Route::get('Professor/announces', function () {
+    return view('Professor/announces');
+})->name('announces');
+
+Route::get('Professor/emploi', function () {
+    return view('Professor/emploi');
+})->name('emploi');
+
+Route::get('Professor/indexDemande', function () {
+    return view('Professor/indexDemande');
+})->name('indexDemande');
+
 Auth::routes();
 
 // Need to recheck the routes for each page 
@@ -44,6 +58,11 @@ Route::get('Student/home', [App\Http\Controllers\Student\HomeController::class, 
 Route::get('Sector_responsible/home', [App\Http\Controllers\Sector_responsible\HomeController::class, 'home'])->name('Sector_responsible.home');
 Route::get('Department_chief/home', [App\Http\Controllers\Department_chief\HomeController::class, 'home'])->name('Department_chief.home');
 });
+
+
+Route::get('Professor/indexDemande', [App\Http\Controllers\Tables\DemandeController::class, 'listDemande'])->name('Professor.indexDemande');
+
+
 
 //Users View for the Educational_Service View
 Route::get('Educational_Service/users', [App\Http\Controllers\Tables\UserController::class, 'listUsers'])->name('Educational_Service.users');

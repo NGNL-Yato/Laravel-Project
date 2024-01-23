@@ -17,6 +17,9 @@
     @vite(["resources/js/sidebar-script.js","resources/CSS/sidebar-style.css"])
     @vite(["resources/js/script.js","resources/CSS/style.css"])
     @vite(["resources/CSS/home.css"])
+    @vite(["resources/js/emploi-script.js"])
+    @vite(["resources/js/home.js"])
+
 
 </head>
 <body>

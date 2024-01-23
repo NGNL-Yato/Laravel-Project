@@ -247,7 +247,7 @@ main {
 .main-etudiant {
     height: 100vh;
     width: 80%;
-    position: absolute;
+    /* position: absolute; */
     right: 0;
     top: 0;
     
@@ -332,10 +332,8 @@ Faire un demande
 .faire-demande {
     width: 100%;
     height: 100%;
-    position: absolute;
     top: 0;
     right: 0;
-    display: none;
 }
 
 .faire-demande .section-container {
@@ -371,21 +369,74 @@ div .section-title {
     flex-direction: column;
     gap: .5rem;
 }
+
+/* Demande */
+.messages-container {
+    margin-left: 5rem;
+    border :0;
+    width: auto;
+    height: 100%;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.messages-container .tables-links {
+    margin: 1rem;
+    align-self: flex-end;
+    
+}
+
+
+.messages-container .messages-table td {
+    padding: 1rem 1.5rem;
+
+}
+
 /* Emploi du temps */
 
 #emploiSection {
-    position: absolute; 
-    margin: 0;
+    margin-left: 5rem;
     border :0;
     width: 100%;
     height: 100%;
     top: 0;
     right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#emploiSection .add_event {
     display: none;
+    position: absolute;
+    background-color: #429ef5;
+    padding: 2rem 5rem;
+    border-radius: 10px;
+    z-index: 999;
+    
+}
+
+#emploiSection .add_event form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+}
+
+#emploiSection .add_event.show {
+    display: block;
 }
 
 .emploi-temps {
     border-collapse: collapse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .emploi-temps, .emploi-temps th, .emploi-temps td {
@@ -396,9 +447,16 @@ div .section-title {
     background-color: #429ef5;
 }
 
+.emploi-temps td:hover {
+    background-color: aquamarine;
+    transition: .3s;
+}
+
 .emploi-temps th, .emploi-temps td {
     width: 100px;
-    text-align: center; /* Center aligns the text */
+    height: 50px;
+    text-align: center;
+     /* Center aligns the text */
 }
 .emploi-temps th:empty, .emploi-temps td:empty {
     background-color: transparent;
