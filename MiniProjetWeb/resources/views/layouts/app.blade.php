@@ -82,6 +82,7 @@
     </header>               
     <main class="py-4">
         @yield('content')
+        
         <!-- Calls the layout thats gonna be added here -->
     </main>
     </div>

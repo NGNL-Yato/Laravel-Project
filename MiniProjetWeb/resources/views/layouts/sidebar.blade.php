@@ -14,6 +14,7 @@
     <link rel="icon" type="image/x-icon" href="assets/iconsite.png">
 
     <!-- Scripts -->
+    @vite(["resources/CSS/Users-style.css"])
     @vite(["resources/js/sidebar-script.js","resources/CSS/sidebar-style.css"])
     @vite(["resources/js/script.js","resources/CSS/style.css"])
     @vite(["resources/CSS/home.css"])
