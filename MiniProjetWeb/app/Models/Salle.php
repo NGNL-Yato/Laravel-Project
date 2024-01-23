@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Salle extends Model
 {
     use HasFactory;
-
     protected $fillable = ['type_salle', 'nom_salle', 'id_departement'];
-
     // Relationship with Departement
     public function departement()
     {

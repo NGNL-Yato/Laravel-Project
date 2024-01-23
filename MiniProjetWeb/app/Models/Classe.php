@@ -15,4 +15,13 @@ class Classe extends Model
     {
         return $this->belongsTo(Filiere::class, 'id_filiere');
     }
+    public function etudiants()
+    {
+        return $this->hasMany(Etudiant::class, 'id_class');
+    }
+
+    public function materiels()
+    {
+        return $this->hasMany(Materiel::class, 'id_class');
+    }
 }

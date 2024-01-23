@@ -9,6 +9,9 @@
             <div class="link-container col-md-4">
                 <a href="{{ URL('Educational_Service/Salle?type=service_pedagogique') }}" class="link-block">Salles du Service pédagogique</a>
             </div>
+            <div class="link-container col-md-4">
+                <a href="{{ URL('Educational_Service/Salle') }}" class="link-block">Toutes les salles</a>
+            </div>
         </div>
     </div>
 @endsection

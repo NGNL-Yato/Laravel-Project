@@ -96,4 +96,12 @@ Route::get('Educational_Service/Salle/create', [App\Http\Controllers\Tables\Sall
 Route::post('Educational_Service/Salle', [App\Http\Controllers\Tables\SalleController::class, 'store'])->name('salle.store');
 Route::put('Educational_Service/Salle/{salle}', [App\Http\Controllers\Tables\SalleController::class, 'update'])->name('salle.update');
 Route::delete('Educational_Service/Salle/{salle}', [App\Http\Controllers\Tables\SalleController::class, 'destroy'])->name('salle.destroy');
-Route::get('Educational_Service/Salle/filterByDepartment', [App\Http\Controllers\Tables\SalleController::class, 'filterByDepartment'])->name('salle.filterByDepartment');
+
+// Etudiant 
+Route::get('Educational_Service/etudiant', [App\Http\Controllers\Tables\EtudiantController::class, 'ListALLEtudiant'])->name('etudiant.index');
+Route::post('Educational_Service/etudiant', [App\Http\Controllers\Tables\EtudiantController::class, 'store'])->name('etudiant.store');
+Route::put('Educational_Service/etudiant/{id}', [App\Http\Controllers\Tables\EtudiantController::class, 'update'])->name('etudiant.update');
+Route::delete('Educational_Service/etudiant/{id}', [App\Http\Controllers\Tables\EtudiantController::class, 'destroy'])->name('etudiant.destroy');
+Route::post('/Educational_Service/etudiant/filterByClass',[App\Http\Controllers\Tables\EtudiantController::class,'filterByClass'])->name('etudiant.filterByClass');
+
+
