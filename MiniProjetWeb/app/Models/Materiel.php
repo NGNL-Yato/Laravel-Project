@@ -9,10 +9,10 @@ class Materiel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type_materiel', 'etat_materiel', 'id_class'];
+    protected $fillable = ['type_materiel', 'etat_materiel', 'id_salle'];
 
-    public function classe()
+    public function salle()
     {
-        return $this->belongsTo(Classe::class, 'id_class');
+        return $this->belongsTo(Salle::class, 'id_salle');
     }
 }

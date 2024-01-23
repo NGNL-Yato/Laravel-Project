@@ -81,14 +81,7 @@
 @include('Educational_Service.home')
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('filiereFilter').addEventListener('change', function() {
-        var selectedFiliere = this.value;
-        window.location.href = '{{ url("/Educational_Service/class") }}?filiere=' + selectedFiliere;
-    });
 
-    // ... rest of your existing JavaScript code ...
-});
 document.addEventListener('DOMContentLoaded', function() {
     // Show/Hide Create Classe Form
     document.getElementById('showCreateClasseForm').addEventListener('click', function() {
@@ -103,6 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    document.getElementById('filiereFilter').addEventListener('change', function() {
+        var selectedFiliere = this.value;
+        window.location.href = '{{ url("/Educational_Service/class") }}?filiere=' + selectedFiliere;
+    });
+    
     // Edit Classe Functionality
     document.querySelectorAll('.editClasseButton').forEach(function(button) {
         button.addEventListener('click', function() {

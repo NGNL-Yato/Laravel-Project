@@ -14,4 +14,8 @@ class Salle extends Model
     {
         return $this->belongsTo(Departement::class, 'id_departement');
     }
+    public function materiels()
+    {
+        return $this->hasMany(Materiel::class, 'id_salle');
+    }
 }

@@ -104,4 +104,9 @@ Route::put('Educational_Service/etudiant/{id}', [App\Http\Controllers\Tables\Etu
 Route::delete('Educational_Service/etudiant/{id}', [App\Http\Controllers\Tables\EtudiantController::class, 'destroy'])->name('etudiant.destroy');
 Route::post('/Educational_Service/etudiant/filterByClass',[App\Http\Controllers\Tables\EtudiantController::class,'filterByClass'])->name('etudiant.filterByClass');
 
-
+//Materiel
+Route::get('Educational_Service/Materiel', [App\Http\Controllers\Tables\MaterielController::class, 'listAllMateriels'])->name('materiels.index');
+Route::post('Educational_Service/Materiel', [App\Http\Controllers\Tables\MaterielController::class, 'store'])->name('materiel.store');
+Route::put('Educational_Service/Materiel/{id}', [App\Http\Controllers\Tables\MaterielController::class, 'update'])->name('materiel.update');
+Route::delete('Educational_Service/Materiel/{id}', [App\Http\Controllers\Tables\MaterielController::class, 'destroy'])->name('materiel.destroy');
+Route::get('/Educational_Service/Materiel/filterBySalle/{salleId}', [App\Http\Controllers\Tables\MaterielController::class, 'filterBySalle'])->name('materiels.filterBySalle');
