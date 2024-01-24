@@ -35,6 +35,19 @@
     box-sizing: border-box;
   }
   
+  .main-content {
+    width: 80%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+  }
+
   
   .sidebar {
     position: fixed;

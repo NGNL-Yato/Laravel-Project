@@ -61,7 +61,8 @@ Route::get('Department_chief/home', [App\Http\Controllers\Department_chief\HomeC
 
 
 Route::get('Professor/indexDemande', [App\Http\Controllers\Tables\DemandeController::class, 'listDemande'])->name('Professor.indexDemande');
-
+Route::get('Professor/indexDemande/{id}', [App\Http\Controllers\Tables\DemandeController::class, 'showDemande'])->name('Professor.demande');
+Route::put('Professor/indexDemande/{id}', [App\Http\Controllers\Tables\DemandeController::class, 'update'])->name('Professor.demande.update');
 
 
 //Users View for the Educational_Service View

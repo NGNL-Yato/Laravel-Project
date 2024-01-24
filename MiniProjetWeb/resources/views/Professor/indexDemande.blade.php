@@ -10,19 +10,19 @@
             <td>Subject</td>
             <td>From</td>
             <td>date</td>
+            <td>etat</td>
         </thead>
-        <tr>
-            <td>1</td>
-            <td>Sujet de demande</td>
-            <td>l'etudiant</td>
-            <td>1/23/2024</td>
-        </tr>
+
         @foreach ($demandes as $demande)
         <tr>
             <td>{{ $demande->id }}</td>
-            <td>{{ $demande->type_demande }}</td>
+            <td><a href="{{ route('Professor.demande', ['id' => $demande->id]) }}">{{ $demande->type_demande }}</a></td>
             <td>{{ $demande->id_user }}</td>
             <td>{{ $demande->created_at }}</td>               
+            <td>{{ $demande->etat_demande }}</td>
+            <td>
+
+            </td>               
         </tr>
         @endforeach
     </table>
