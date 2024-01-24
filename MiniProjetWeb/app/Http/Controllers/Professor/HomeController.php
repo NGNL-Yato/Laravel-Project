@@ -11,7 +11,7 @@ class HomeController extends Controller {
 
         public function home()
         {
-            return view ('Professor.home');
+            return redirect ('Professor/annonces');
         }        
         
 }

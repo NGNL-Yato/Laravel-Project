@@ -49,20 +49,6 @@ Route::get('Professor/indexDemande', function () {
     return view('Professor/indexDemande');
 })->name('indexDemande');
 
-
-
-Route::get('Professor/announces', function () {
-    return view('Professor/announces');
-})->name('announces');
-
-Route::get('Professor/emploi', function () {
-    return view('Professor/emploi');
-})->name('emploi');
-
-Route::get('Professor/indexDemande', function () {
-    return view('Professor/indexDemande');
-})->name('indexDemande');
-
 Auth::routes();
 
 // Need to recheck the routes for each page 
@@ -82,12 +68,6 @@ Route::get('Student/home', [App\Http\Controllers\Student\HomeController::class, 
 Route::get('Sector_responsible/home', [App\Http\Controllers\Sector_responsible\HomeController::class, 'home'])->name('Sector_responsible.home');
 Route::get('Department_chief/home', [App\Http\Controllers\Department_chief\HomeController::class, 'home'])->name('Department_chief.home');
 });
-
-
-Route::get('Professor/indexDemande', [App\Http\Controllers\Tables\DemandeController::class, 'listDemande'])->name('Professor.indexDemande');
-Route::get('Professor/indexDemande/{id}', [App\Http\Controllers\Tables\DemandeController::class, 'showDemande'])->name('Professor.demande');
-Route::put('Professor/indexDemande/{id}', [App\Http\Controllers\Tables\DemandeController::class, 'update'])->name('Professor.demande.update');
-
 
 //Users View for the Educational_Service View
 Route::get('Educational_Service/users', [App\Http\Controllers\Tables\UserController::class, 'listUsers'])->name('Educational_Service.users');
@@ -205,8 +185,19 @@ Route::post('/Educational_Service/annonces', [App\Http\Controllers\Tables\Annonc
 Route::put('/Educational_Service/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForEducationalService'])->name('educationalService.updateAnnonce');
 Route::delete('/Educational_Service/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForEducationalService'])->name('educationalService.destroyAnnonce');
 
+// Add this route for Sector_responsible
+Route::get('/Sector_responsible/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'classesForChefDeFiliere'])->name('sector_responsible.annonces');
+Route::post('Sector_responsible/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'storeForChefDeFiliere'])->name('sector_responsible.storeAnnonce');
+Route::put('Sector_responsible/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForChefDeFiliere'])->name('sector_responsible.updateAnnonce');
+Route::delete('Sector_responsible/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForChefDeFiliere'])->name('sector_responsible.destroyAnnonce');
+
+Route::get('/Professor/Informations', [App\Http\Controllers\InformationsController::class, 'showProfInformations'])->name('professor.informations');
+Route::get('/Student/Informations', [App\Http\Controllers\InformationsController::class, 'showEtudiantInformations'])->name('student.informations');
 
 
-
-
+//Annonces professor
+Route::get('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForProfessor'])->name('professor.annonces');
+Route::post('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'storeForProfessor'])->name('professor.storeAnnonce');
+Route::put('/Professor/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForProfessor'])->name('professor.updateAnnonce');
+Route::delete('/Professor/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForProfessor'])->name('professor.destroyAnnonce');
 
