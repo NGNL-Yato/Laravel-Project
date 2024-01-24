@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 @section("navLinks")
 <li>
-    <a href="{{URL('Professor/announces')}}" data-id="emploi" title="emploi" class="tooltip">
+    <a href="{{URL('Student/annonces')}}" data-id="emploi" title="emploi" class="tooltip">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">
@@ -16,7 +16,7 @@
     </a>
     </li>
   <li>
-    <a href="{{URL('Professor/emploi')}}" data-id="emploi" title="emploi" class="tooltip">
+    <a href="{{URL('Student/emploi')}}" data-id="emploi" title="emploi" class="tooltip">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">
@@ -30,7 +30,7 @@
     </a>
   </li>
   <li>
-    <a href="{{URL('Professor/indexDemande')}}" data-id="emploi" title="emploi" class="tooltip">
+    <a href="{{URL('Student/indexDemande')}}" data-id="emploi" title="emploi" class="tooltip">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">

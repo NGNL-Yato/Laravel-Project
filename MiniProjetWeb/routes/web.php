@@ -26,9 +26,7 @@ Route::get('Educational_Service/indexformations', function () {
 Route::get('Educational_Service/indexSalles', function () {
     return view('Educational_Service/indexSalles');
 })->name('indexsalle');
-
-<<<<<<< Updated upstream
-=======
+    
 Route::get('Department_chief/indexDemande', function () {
     return view('Department_chief/indexDemande');
 })->name('indexDemande');
@@ -51,7 +49,6 @@ Route::get('Professor/indexDemande', function () {
     return view('Professor/indexDemande');
 })->name('indexDemande');
 
->>>>>>> Stashed changes
 Auth::routes();
 
 // Need to recheck the routes for each page 
@@ -174,7 +171,7 @@ Route::delete('/Educational_Service/cours/{cours}', [App\Http\Controllers\Tables
 
 // Annonces all type of users
 Route::get('/Department_chief/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'index'])->name('departmentChief.annonces');
-Route::get('/user-class-annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForUserClass'])->name('annonces.userClass');
+Route::get('/Student/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesCombinedEtudiants'])->name('student.annonces');
 Route::get('/annonces/professeurs', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForProfesseurs'])->name('annonces.professeurs');
 Route::get('/annonces/general', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForGeneral'])->name('annonces.general');
 Route::get('/annonces/etudiants', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForEtudiants'])->name('annonces.etudiants');

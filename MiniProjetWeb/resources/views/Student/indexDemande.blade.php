@@ -1,4 +1,4 @@
-@include("Professor.home")
+@include("Student.home")
 <div class="messages-container">
     <div class="tables-links">
         <button href="" id="faireDemande" class="btn">Faire une demande</button>
@@ -22,5 +22,5 @@
     </table>
     </div>
 </div>
-@extends("Professor.faireDemande")
+@extends("Student.faireDemande")
 

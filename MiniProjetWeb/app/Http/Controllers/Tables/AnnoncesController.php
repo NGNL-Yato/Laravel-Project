@@ -74,19 +74,25 @@ class AnnoncesController extends Controller
         return redirect()->route('departmentChief.annonces')->with('success', 'Annonce deleted successfully');
     }
 
-    //Affiche les annonces des etudiants
-    public function annoncesForUserClass()
+    public function annoncesCombinedEtudiants()
     {
+        // Fetch annonces for Etudiants
+        $annoncesEtudiants = Annonce::where('cible_annonce', 'Etudiants')->get();
+    
+        // Fetch annonces for the user's class
         $user = Auth::user();
-        if (!$user->etudiant) {
-            // Handle the case where the user is not an etudiant
-            return back()->with('error', 'No class associated with the user');
+        $annoncesUserClass = collect([]);
+        if ($user->etudiant) {
+            $classId = $user->etudiant->id_class;
+            $annoncesUserClass = Annonce::where('id_class', $classId)->get();
         }
-        $classId = $user->etudiant->id_class;
-        $annonces = Annonce::where('id_class', $classId)->get();
-
-        return view('annonces.userClassAnnonces', compact('annonces'));
+    
+        // Combine both collections
+        $annonces = $annoncesEtudiants->merge($annoncesUserClass);
+    
+        return view('student.annonces', compact('annonces'));
     }
+    
     // Display announcements for Professeurs
     public function annoncesForProfesseurs()
     {

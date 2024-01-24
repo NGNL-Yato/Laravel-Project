@@ -72,8 +72,4 @@
 
     @include('Educational_Service.register')
 </div>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 @endsection

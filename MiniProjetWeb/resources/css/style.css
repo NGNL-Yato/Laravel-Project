@@ -619,3 +619,8 @@ button {
     margin: 10px 0;
     /* Add more styles as needed */
 }
+
+/* Style for the Etudiant annonces */
+.professor-background {
+    background-color: #ffffae;
+}
