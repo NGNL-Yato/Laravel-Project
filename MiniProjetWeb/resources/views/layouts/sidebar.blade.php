@@ -164,7 +164,7 @@
         <div class="online__status"></div>
       </div>
       <div class="avatar__name hide">
-        <div class = "Hidden_request " style = "display: none">{{$user = auth()->user();}}        </div>
+        <div class = "Hidden_request " style = "display: none">{{$user = auth()->user()}}</div>
         <div class="user-name">{{$user->name}}</div>
         <div class="email">{{$user->email}}</div>
       </div>

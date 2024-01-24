@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var id = button.getAttribute('data-id');
             var typeMateriel = button.getAttribute('data-type-materiel');
             var etatMateriel = button.getAttribute('data-etat-materiel');
-            var salleId = button.getAttribute('data-sallee-id');
+            var salleId = button.getAttribute('data-salle-id');
 
             // Populate form with existing data
             document.getElementById('editTypeMateriel').value = typeMateriel;

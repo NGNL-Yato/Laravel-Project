@@ -15,6 +15,12 @@
             <div class="link-container col-md-4">
                 <a href="{{URL('Educational_Service/info_filiere')}}" class="link-block">Informations Relatives aux filières</a>
             </div>
+            <div class="link-container col-md-4">
+                <a href="{{URL('Educational_Service/module')}}" class="link-block">Modules</a>
+            </div>
+            <div class="link-container col-md-4">
+                <a href="{{URL('Educational_Service/cours')}}" class="link-block">Affectations Modules</a>
+            </div>
         </div>
     </div>
 @endsection

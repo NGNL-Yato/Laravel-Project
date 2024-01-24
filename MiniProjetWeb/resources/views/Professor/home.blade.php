@@ -13,8 +13,12 @@
         <path d="M14 12h6v8h-6z" />
         <path d="M14 4h6v4h-6z" />
       </svg>
+<<<<<<< Updated upstream
       <span class="link hide">Emploi de temps</span>
       <span class="tooltip__content">Emploi de temps</span>
+=======
+      <span class="link hide">Les annonces</span>
+>>>>>>> Stashed changes
     </a>
     </li>
   <li>

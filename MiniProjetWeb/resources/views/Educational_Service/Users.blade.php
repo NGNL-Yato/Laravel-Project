@@ -1,5 +1,7 @@
 @extends('layouts.sidebar')
 @extends('Educational_Service.home')
+
+
 @section('content')
 
 <div class = "container">
@@ -70,4 +72,8 @@
 
     @include('Educational_Service.register')
 </div>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 @endsection

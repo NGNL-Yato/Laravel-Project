@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Jour extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nom',
+    ];
 }
