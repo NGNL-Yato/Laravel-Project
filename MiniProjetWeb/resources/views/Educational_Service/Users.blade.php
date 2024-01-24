@@ -1,6 +1,8 @@
 {{-- @extends('layouts.sidebar') --}}
 @extends('layouts.sidebar')
 @extends('Educational_Service.home')
+
+
 @section('content')
 
 <div class = "container">

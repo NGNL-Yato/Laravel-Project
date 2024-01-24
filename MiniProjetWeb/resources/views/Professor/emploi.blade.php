@@ -81,10 +81,16 @@
             </div>
 
             <div class="cover-layer"></div>
-        </div>
+        {{-- </div> --}}
+        <div class="layer-form">
             <div class="add_event">
-            
                 <form action="">
+                    <div class="formBx">
+                        <label for="">Type de demande</label>
+                        <div class="inputBx">
+                            <input type="text">
+                        </div>
+                    </div>
                     <div class="formBx">
                         <label for="">Titre</label>
                         <div class="inputBx">
@@ -92,26 +98,23 @@
                         </div>
                     </div>
                     <div class="formBx">
-                        <label for="">Type de sceance</label>
-                        <div class="inputBx">
-                            <input type="text">
-                        </div>
+                        <label for="role">to :</label>
+                        <select id="role" name="role">
+                            <option value="3">Chef de Filiere</option>
+                            <option value="4">Chef de departement</option>
+                            <option value="5">Responsable de scolarite</option> 
+                        </select>
                     </div>
                     <div class="formBx">
-                        <label for="">Classe</label>
-                        <div class="inputBx">
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="formBx">
-                        <label for="">departement</label>
-                        <div class="inputBx">
-                            <input type="text">
-                        </div>
+                        <label for="">Contenu du demande</label>
+                        <textarea name="" id="" cols="30" rows="10" placeholder=""></textarea>
                     </div>
                     <button type="submit" class="btn eventBtn">Add Event</button>
                 </form>
+            </div>
+
         </div>
+
 
     </div>
 

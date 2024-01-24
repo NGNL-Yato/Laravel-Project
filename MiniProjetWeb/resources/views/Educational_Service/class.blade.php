@@ -16,6 +16,7 @@
                     <th>Numero_groupe</th>
                     <th>Nom Filiere</th>
                     <th>Actions</th>
+                    <th>Emploi du temps</th>
                 </tr>
             </thead>
             <tbody>

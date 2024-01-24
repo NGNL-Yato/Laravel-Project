@@ -14,6 +14,9 @@
                         <th>Nom Departement</th>
                     @endif
                     <th>Actions</th>
+                    @if($type != 'departement')
+                    <th>Emploi du temps</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +40,11 @@
                                 @method('DELETE')
                                 <button type="submit">Delete</button>
                             </form>
+                        </td>
+                        <td>
+                            @if($type != 'departement')
+                            <button href = "{{ route('emploidutemps.index', $salle->id) }}" >Emploi du temps</button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

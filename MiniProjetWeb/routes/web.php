@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;// Emploidutemps
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome'); //Gave a name to it to use it as an automatic redirection
 
+
+//Index Educational_Service
 Route::get('Educational_Service/indexformations', function () {
     return view('Educational_Service/indexformations');
 })->name('indexformations');
@@ -24,6 +26,28 @@ Route::get('Educational_Service/indexformations', function () {
 Route::get('Educational_Service/indexSalles', function () {
     return view('Educational_Service/indexSalles');
 })->name('indexsalle');
+    
+Route::get('Department_chief/indexDemande', function () {
+    return view('Department_chief/indexDemande');
+})->name('indexDemande');
+
+Route::get('Department_chief/indexEmploi', function () {
+    return view('Department_chief/indexEmploi');
+})->name('indexEmploi');
+
+
+//Index Sector_responsible
+Route::get('Professor/annonces', function () {
+    return view('Professor/annonces');
+})->name('annonces');
+
+Route::get('Professor/emploi', function () {
+    return view('Professor/emploi');
+})->name('emploi');
+
+Route::get('Professor/indexDemande', function () {
+    return view('Professor/indexDemande');
+})->name('indexDemande');
 
 
 
@@ -130,3 +154,59 @@ Route::post('Educational_Service/Materiel', [App\Http\Controllers\Tables\Materie
 Route::put('Educational_Service/Materiel/{id}', [App\Http\Controllers\Tables\MaterielController::class, 'update'])->name('materiel.update');
 Route::delete('Educational_Service/Materiel/{id}', [App\Http\Controllers\Tables\MaterielController::class, 'destroy'])->name('materiel.destroy');
 Route::get('/Educational_Service/Materiel/filterBySalle/{salleId}', [App\Http\Controllers\Tables\MaterielController::class, 'filterBySalle'])->name('materiels.filterBySalle');
+
+//Jour/Horaire Routes
+Route::resource('jours', App\Http\Controllers\Tables\JourController::class);
+Route::resource('horaires', App\Http\Controllers\Tables\HoraireController::class);
+
+Route::get('/Educational_Service/emploidutemps', [App\Http\Controllers\Other\EmploidutempsController::class, 'index'])->name('emploidutemps.index');
+
+//Module
+Route::get('/Educational_Service/module', [App\Http\Controllers\Tables\ModuleController::class, 'index'])->name('modules.index');
+Route::post('/Educational_Service/module', [App\Http\Controllers\Tables\ModuleController::class, 'store'])->name('modules.store');
+Route::put('/Educational_Service/module/{module}', [App\Http\Controllers\Tables\ModuleController::class, 'update'])->name('modules.update');
+Route::delete('/Educational_Service/module/{module}', [App\Http\Controllers\Tables\ModuleController::class, 'destroy'])->name('modules.destroy');
+
+//Cours
+Route::get('/Educational_Service/cours', [App\Http\Controllers\Tables\CoursController::class, 'index'])->name('cours.index');
+Route::post('/Educational_Service/cours', [App\Http\Controllers\Tables\CoursController::class, 'store'])->name('cours.store');
+Route::put('/Educational_Service/cours/{cours}', [App\Http\Controllers\Tables\CoursController::class, 'update'])->name('cours.update');
+Route::delete('/Educational_Service/cours/{cours}', [App\Http\Controllers\Tables\CoursController::class, 'destroy'])->name('cours.destroy');
+
+//Affectation Salles
+
+
+
+
+
+
+
+
+
+
+//Departement Chief Routes
+
+
+
+
+// Annonces all type of users
+Route::get('/Department_chief/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'index'])->name('departmentChief.annonces');
+Route::get('/Student/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesCombinedEtudiants'])->name('student.annonces');
+Route::get('/annonces/professeurs', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForProfesseurs'])->name('annonces.professeurs');
+Route::get('/annonces/general', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForGeneral'])->name('annonces.general');
+Route::get('/annonces/etudiants', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForEtudiants'])->name('annonces.etudiants');
+Route::post('/Department_chief/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'store'])->name('annonce.store');
+Route::put('/Department_chief/annonces/{annonces}', [App\Http\Controllers\Tables\AnnoncesController::class, 'update'])->name('annonce.update');
+Route::delete('/Department_chief/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroy'])->name('annonce.destroy');
+
+// Add this route for Educational_Service
+Route::get('/Educational_Service/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForEducationalService'])->name('educationalService.annonces');
+Route::post('/Educational_Service/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'storeForEducationalService'])->name('educationalService.storeAnnonce');
+Route::put('/Educational_Service/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForEducationalService'])->name('educationalService.updateAnnonce');
+Route::delete('/Educational_Service/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForEducationalService'])->name('educationalService.destroyAnnonce');
+
+
+
+
+
+

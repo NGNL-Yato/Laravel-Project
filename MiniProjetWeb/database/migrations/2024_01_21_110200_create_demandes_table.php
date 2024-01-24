@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('demandes', function (Blueprint $table) {
             $table->id();
             $table->string('type_demande');
-            $table->foreignId('id_user')->constrained('users');
+            $table->string('contenu_demande');
             $table->string('etat_demande');
-            $table->unsignedBigInteger('id_prof'); // Ensure the data type matches the primary key in 'professeurs'
-            $table->foreign('id_prof')->references('id')->on('professeurs'); // Reference the 'id' column in 'professeurs'
+            $table->unsignedBigInteger('id_prof'); 
+            $table->foreign('id_prof')->references('id')->on('professeurs'); 
             $table->timestamps();
         });
         

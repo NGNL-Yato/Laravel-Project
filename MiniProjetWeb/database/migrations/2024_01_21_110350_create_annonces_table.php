@@ -17,10 +17,8 @@ return new class extends Migration
             $table->string('cible_annonce');
             $table->string('type_annonce');
             $table->string('titre_annonce');
-            $table->dateTime('date_creation');
-            $table->dateTime('date_modification')->nullable();
             $table->text('contenu_annonce');
-            $table->foreignId('id_class')->constrained('classes')->nullable();
+            $table->foreignId('id_class')->nullable()->constrained('classes');
             $table->foreignId('id_user')->constrained('users');
             $table->timestamps();
         });        
