@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function home() {
-        return view('Sector_responsible.home');
+        return redirect('/Sector_responsible/annonces');
         }
 }

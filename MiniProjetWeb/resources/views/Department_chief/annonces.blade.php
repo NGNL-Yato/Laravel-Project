@@ -23,6 +23,7 @@
                         </div>
                     </div>
                     <div class="annonce-actions">
+                        @if(auth()->user()->id == $annonce->id_user)
                         <button class="editAnnonceButton" 
                         data-id="{{ $annonce->id }}"
                         data-titre-annonce="{{ $annonce->titre_annonce }}"
@@ -37,6 +38,7 @@
                             @method('DELETE')
                             <button type="submit" id="delet-form-bt">&times;</button>
                         </form>
+                        @endif
                     </div>
                 </div>
             @endforeach

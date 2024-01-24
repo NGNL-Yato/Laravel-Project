@@ -22,6 +22,7 @@
                         </div>
                     </div>
                     <div class="annonce-actions">
+                        @if(auth()->user()->id == $annonce->id_user)
                         <button class="editAnnonceButton" 
                         data-id="{{ $annonce->id }}"
                         data-titre-annonce="{{ $annonce->titre_annonce }}"
@@ -31,11 +32,12 @@
                         data-type-annonce="{{ $annonce->type_annonce }}">
                         🖉
                         </button>
-                        <form action="{{ route('educationalService.destroyAnnonce', $annonce->id) }}" method="POST">
+                        <form action="{{ route('sector_responsible.destroyAnnonce', $annonce->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" id="delet-form-bt">&times;</button>
                         </form>
+                        @endif
                     </div>
                 </div>
             @endforeach
@@ -55,20 +57,17 @@
                     </select>
 
                     <select id="editCibleAnnonce" name="cible_annonce">
-                        <option value="General">General</option>
-                        <option value="Professeurs">Professeurs</option>
-                        <option value="Etudiants">Etudiants</option>
+                        <option value="Etudiants">All Students</option>
+                        @foreach($classes as $class)
+                            <option value="{{ $class->id }}">{{ $class->Numero_groupe }} - {{ $class->filiere->nom_filiere }}</option>
+                        @endforeach
                     </select>
 
                     <select id="editTypeAnnonce" name="type_annonce">
                         <option value="Information">Information</option>
                         <option value="Report Examen">Report Examen</option>
-                        <option value="Recrutement">Recrutement</option>
-                        <option value="Conférence">Conférence</option>
-                        <option value="Résultat">Résultat</option>
                         <option value="Annulation d’une séance">Annulation d’une séance</option>
                         <option value="CC">CC</option>
-                        <option value="information">Information</option>
                     </select>
 
                     <input type="text" id="editTitreAnnonce" name="titre_annonce" placeholder="Title">
@@ -86,7 +85,7 @@
         <div id="createAnnonceForm" class="modal" style="display:none;">
             <div class="modal-content">
                 <span class="close" onclick="editModal.style.display='none'">&times;</span>
-                <form action="{{ route('educationalService.storeAnnonce') }}" method="POST">
+                <form action="{{ route('sector_responsible.storeAnnonce') }}" method="POST">
                     @csrf
                     <select name="visibilite_annonce">
                         <option value="visible">Visible</option>
@@ -94,97 +93,79 @@
                     </select>
 
                     <select name="cible_annonce">
-                        <option value="General">General</option>
-                        <option value="Professeurs">Professeurs</option>
-                        <option value="Etudiants">Etudiants</option>
+                        <option value="Etudiants">All Students</option>
+                        @foreach($classes as $class)
+                            <option value="{{ $class->id }}">{{ $class->Numero_groupe }} - {{ $class->filiere->nom_filiere }}</option>
+                        @endforeach
                     </select>
 
                     <select name="type_annonce">
                         <option value="Information">Information</option>
                         <option value="Report Examen">Report Examen</option>
-                        <option value="Recrutement">Recrutement</option>
-                        <option value="Conférence">Conférence</option>
-                        <option value="Résultat">Résultat</option>
                         <option value="Annulation d’une séance">Annulation d’une séance</option>
-                        <option value="CC">CC</option>
-                        <option value="information">Information</option>
                     </select>
 
-                    <input type="text" name="titre_annonce" placeholder="Title" required>
+                    <input type="text" name="titre_annonce" placeholder="Title" required>                    
+                    <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
                     <textarea name="contenu_annonce" placeholder="Content" required></textarea>
                     
-                    <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
-
                     <button type="submit">Create</button>
                 </form>
             </div>
         </div>
-
-
     </div>
 </div>
 
-@include('Professor.home')
+@include('Sector_responsible.home')
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Modal elements
-    var editModal = document.getElementById('editAnnonceForm');
-    var createModal = document.getElementById('createAnnonceForm');
-    var spans = document.getElementsByClassName("close");
+    // Get the modal
+    var createModal = document.getElementById("createAnnonceForm");
+    var editModal = document.getElementById("editAnnonceForm");
 
-    // Show/Hide Create Annonce Form
-    var showCreateAnnonceButton = document.getElementById('showCreateAnnonceForm');
-    var createAnnonceForm = document.getElementById('createAnnonceForm');
+    // Get the button that opens the modal
+    var createBtn = document.getElementById("showCreateAnnonceForm");
 
-    showCreateAnnonceButton.addEventListener('click', function() {
-        createModal.style.display = 'block'; // Show the create modal
-    });
+    // Get the <span> element that closes the modal
+    var createSpan = createModal.getElementsByClassName("close")[0];
+    var editSpan = editModal.getElementsByClassName("close")[0];
 
-    // Edit Annonce Functionality
-    document.querySelectorAll('.editAnnonceButton').forEach(function(button) {
-        button.addEventListener('click', function() {
-        var id = button.getAttribute('data-id');
-        var titreAnnonce = button.getAttribute('data-titre-annonce');
-        var contenuAnnonce = button.getAttribute('data-contenu-annonce');
-        var visibiliteAnnonce = button.getAttribute('data-visibilite-annonce');
-        var cibleAnnonce = button.getAttribute('data-cible-annonce');
-        var typeAnnonce = button.getAttribute('data-type-annonce');
+    // When the user clicks the button, open the modal 
+    createBtn.onclick = function() {
+        createModal.style.display = "block";
+    }
 
-        // Populate form with existing data
-        document.getElementById('editTitreAnnonce').value = titreAnnonce;
-        document.getElementById('editContenuAnnonce').value = contenuAnnonce;
-        document.getElementById('editVisibiliteAnnonce').value = visibiliteAnnonce;
-        document.getElementById('editCibleAnnonce').value = cibleAnnonce;
-        document.getElementById('editTypeAnnonce').value = typeAnnonce;
+    // When the user clicks on <span> (x), close the modal
+    createSpan.onclick = function() {
+        createModal.style.display = "none";
+    }
 
-        // Set form action URL
-        var form = document.getElementById('editAnnonceFormContent');
-        form.action = '/path-to-update-endpoint/' + id;
-
-        // Show the edit modal
-        editModal.style.display = 'block';
-    });
-    });
+    editSpan.onclick = function() {
+        editModal.style.display = "none";
+    }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
+        if (event.target == createModal) {
+            createModal.style.display = "none";
+        }
         if (event.target == editModal) {
             editModal.style.display = "none";
-        } else if (event.target == createModal) {
-            createModal.style.display = "none";
         }
     }
 
-    // Optional: Add functionality for cancel buttons in forms
-    for (let span of spans) {
-        span.onclick = function() {
-            editModal.style.display = "none";
-            createModal.style.display = "none";
+    // Populate the edit form
+    var editButtons = document.getElementsByClassName("editAnnonceButton");
+    for (var i = 0; i < editButtons.length; i++) {
+        editButtons[i].onclick = function() {
+            document.getElementById("editTitreAnnonce").value = this.dataset.titreAnnonce;
+            document.getElementById("editContenuAnnonce").value = this.dataset.contenuAnnonce;
+            document.getElementById("editVisibiliteAnnonce").value = this.dataset.visibiliteAnnonce;
+            document.getElementById("editCibleAnnonce").value = this.dataset.cibleAnnonce;
+            document.getElementById("editTypeAnnonce").value = this.dataset.typeAnnonce;
+            document.getElementById("editAnnonceFormContent").action = "/filiereResponsible/annonce/" + this.dataset.id;
+            editModal.style.display = "block";
         }
     }
-});
-
-
 </script>
 @endsection

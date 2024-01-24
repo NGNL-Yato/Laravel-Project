@@ -185,8 +185,19 @@ Route::post('/Educational_Service/annonces', [App\Http\Controllers\Tables\Annonc
 Route::put('/Educational_Service/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForEducationalService'])->name('educationalService.updateAnnonce');
 Route::delete('/Educational_Service/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForEducationalService'])->name('educationalService.destroyAnnonce');
 
+// Add this route for Sector_responsible
+Route::get('/Sector_responsible/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'classesForChefDeFiliere'])->name('sector_responsible.annonces');
+Route::post('Sector_responsible/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'storeForChefDeFiliere'])->name('sector_responsible.storeAnnonce');
+Route::put('Sector_responsible/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForChefDeFiliere'])->name('sector_responsible.updateAnnonce');
+Route::delete('Sector_responsible/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForChefDeFiliere'])->name('sector_responsible.destroyAnnonce');
+
+Route::get('/Professor/Informations', [App\Http\Controllers\InformationsController::class, 'showProfInformations'])->name('professor.informations');
+Route::get('/Student/Informations', [App\Http\Controllers\InformationsController::class, 'showEtudiantInformations'])->name('student.informations');
 
 
-
-
+//Annonces professor
+Route::get('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForProfessor'])->name('professor.annonces');
+Route::post('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'storeForProfessor'])->name('professor.storeAnnonce');
+Route::put('/Professor/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForProfessor'])->name('professor.updateAnnonce');
+Route::delete('/Professor/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForProfessor'])->name('professor.destroyAnnonce');
 

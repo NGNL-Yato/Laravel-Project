@@ -78,4 +78,4 @@
 </div>
 @endsection
 
-@include('Professor.home')
+@include('Sector_responsible.home')

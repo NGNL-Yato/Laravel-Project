@@ -3,9 +3,13 @@
 @section('content')
 <div class="container">
     <div class="annonce_div">
+        @if(!$classes->isEmpty())
+
         <!-- Button to Show/Hide Creation Form -->
         <button id="showCreateAnnonceForm">Add New Annonce</button>
-
+        @else
+            <p class="no-class-message">No Annonce Available Yet...</p>
+        @endif
         <!-- Table for Showing Annonces -->
         <div class="annonces-container">
             @foreach($annonces as $annonce)
@@ -22,6 +26,7 @@
                         </div>
                     </div>
                     <div class="annonce-actions">
+                        @if(auth()->user()->id == $annonce->id_user)
                         <button class="editAnnonceButton" 
                         data-id="{{ $annonce->id }}"
                         data-titre-annonce="{{ $annonce->titre_annonce }}"
@@ -31,11 +36,12 @@
                         data-type-annonce="{{ $annonce->type_annonce }}">
                         🖉
                         </button>
-                        <form action="{{ route('educationalService.destroyAnnonce', $annonce->id) }}" method="POST">
+                        <form action="{{ route('professor.destroyAnnonce', $annonce->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" id="delet-form-bt">&times;</button>
                         </form>
+                        @endif
                     </div>
                 </div>
             @endforeach
@@ -54,21 +60,24 @@
                         <option value="invisible">Invisible</option>
                     </select>
 
-                    <select id="editCibleAnnonce" name="cible_annonce">
-                        <option value="General">General</option>
-                        <option value="Professeurs">Professeurs</option>
-                        <option value="Etudiants">Etudiants</option>
-                    </select>
+                    @if($classes->isEmpty())
+                        <p class="annonce-details">No class available yet.</p>
+                    @else
+                        <select id="editCibleAnnonce" name="cible_annonce">
+                            @foreach($classes as $class)
+                                <option value="{{ $class->id }}">
+                                    {{ $class->Numero_groupe }} - {{ $class->filiere->nom_filiere }}
+                                </option>
+                            @endforeach
+                        </select>
+                    @endif
 
                     <select id="editTypeAnnonce" name="type_annonce">
                         <option value="Information">Information</option>
                         <option value="Report Examen">Report Examen</option>
-                        <option value="Recrutement">Recrutement</option>
-                        <option value="Conférence">Conférence</option>
                         <option value="Résultat">Résultat</option>
                         <option value="Annulation d’une séance">Annulation d’une séance</option>
                         <option value="CC">CC</option>
-                        <option value="information">Information</option>
                     </select>
 
                     <input type="text" id="editTitreAnnonce" name="titre_annonce" placeholder="Title">
@@ -86,28 +95,31 @@
         <div id="createAnnonceForm" class="modal" style="display:none;">
             <div class="modal-content">
                 <span class="close" onclick="editModal.style.display='none'">&times;</span>
-                <form action="{{ route('educationalService.storeAnnonce') }}" method="POST">
+                <form action="{{ route('professor.storeAnnonce') }}" method="POST">
                     @csrf
                     <select name="visibilite_annonce">
                         <option value="visible">Visible</option>
                         <option value="invisible">Invisible</option>
                     </select>
 
-                    <select name="cible_annonce">
-                        <option value="General">General</option>
-                        <option value="Professeurs">Professeurs</option>
-                        <option value="Etudiants">Etudiants</option>
-                    </select>
+                    @if($classes->isEmpty())
+                        <p class="annonce-details" >No class available yet.</p>
+                    @else
+                        <select name="cible_annonce">
+                            @foreach($classes as $class)
+                                <option value="{{ $class->id }}">
+                                    {{ $class->Numero_groupe }} - {{ $class->filiere->nom_filiere }}
+                                </option>
+                            @endforeach
+                        </select>
+                    @endif
 
                     <select name="type_annonce">
                         <option value="Information">Information</option>
                         <option value="Report Examen">Report Examen</option>
-                        <option value="Recrutement">Recrutement</option>
-                        <option value="Conférence">Conférence</option>
                         <option value="Résultat">Résultat</option>
                         <option value="Annulation d’une séance">Annulation d’une séance</option>
                         <option value="CC">CC</option>
-                        <option value="information">Information</option>
                     </select>
 
                     <input type="text" name="titre_annonce" placeholder="Title" required>
@@ -119,7 +131,6 @@
                 </form>
             </div>
         </div>
-
 
     </div>
 </div>
@@ -160,7 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Set form action URL
         var form = document.getElementById('editAnnonceFormContent');
-        form.action = '/path-to-update-endpoint/' + id;
+        form.action = '{{ route("professor.updateAnnonce", "") }}/' + id;
+
 
         // Show the edit modal
         editModal.style.display = 'block';
