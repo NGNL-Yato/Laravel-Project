@@ -65,7 +65,7 @@
     </head>
 
     <body class="antialiased">
-        <a href="http://localhost:8000/register"> link </a>
+        <a href="http://localhost:8000/register" class="btn" style="border-radius: 10px;margin-left:1rem"> Register </a>
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             <main class="main">
                 <section class="hero">
@@ -117,18 +117,7 @@
                             <h3>Latest Announcements</h3>
                         </div>
                         <div class="announcements-posts">
-                            <div class="post">
-                                <div class="imgBx">
-                                    <img src="{{URL('assets/hero.png')}}" alt="">
-                                </div>
-                                <div class="post-info">
-                                    <span class="sous-title">new announcements</span>
-                                    <h4 class="post-title"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h4>
-                                    <p class="post-date">January 1st, 2024</p>
-                                    <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic unde delectus excepturi atque reiciendis sunt quibusdam distinctio, illum eaque...</p>
-                                    <button  class="post-btn" data-id="1">Learn more <i class='bx bx-down-arrow-alt'></i></button>
-                                </div>
-                            </div>
+
                             {{-- <div class="full-post" style="display: none">
                                 <div class="post-full-image">
                                     <h4 class="post-title"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h4>
@@ -145,10 +134,9 @@
                                 </div>
                                 <div class="post-info">
                                     <span class="sous-title">new announcements</span>
-                                    <h4 class="post-title"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h4>
+                                    <h4 class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit</h4>
                                     <p class="post-date">January 1st, 2024</p>
                                     <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic unde delectus excepturi atque reiciendis sunt quibusdam distinctio, illum eaque...</p>
-                                    <button  class="post-btn" data-id="2">Learn more <i class='bx bx-down-arrow-alt'></i></button>
                                 </div>
                             </div>
                             <div class="post">
@@ -157,10 +145,9 @@
                                 </div>
                                 <div class="post-info">
                                     <span class="sous-title">new announcements</span>
-                                    <h4 class="post-title"><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h4>
+                                    <h4 class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit</h4>
                                     <p class="post-date">January 1st, 2024</p>
                                     <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic unde delectus excepturi atque reiciendis sunt quibusdam distinctio, illum eaque...</p>
-                                    <button  class="post-btn" data-id="3">Learn more <i class='bx bx-down-arrow-alt'></i></button>
                                 </div>
                             </div>
                             <div class="post">
@@ -169,10 +156,20 @@
                                 </div>
                                 <div class="post-info">
                                     <span class="sous-title">new announcements</span>
-                                    <h4 class="post-title"><a href="/announce.blade.php">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h4>
+                                    <h4 class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit</h4>
                                     <p class="post-date">January 1st, 2024</p>
                                     <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic unde delectus excepturi atque reiciendis sunt quibusdam distinctio, illum eaque...</p>
-                                    <button  class="post-btn" data-id="4">Learn more <i class='bx bx-down-arrow-alt'></i></button>
+                                </div>
+                            </div>
+                            <div class="post">
+                                <div class="imgBx">
+                                    <img src="{{URL('assets/hero.png')}}" alt="">
+                                </div>
+                                <div class="post-info">
+                                    <span class="sous-title">new announcements</span>
+                                    <h4 class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit</h4>
+                                    <p class="post-date">January 1st, 2024</p>
+                                    <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic unde delectus excepturi atque reiciendis sunt quibusdam distinctio, illum eaque...</p>
                                 </div>
                             </div>
                         </div>
