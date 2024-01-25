@@ -12,6 +12,7 @@ use App\Models\Cours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Salle;
 
 class SceanceController extends Controller
 {
@@ -19,10 +20,24 @@ class SceanceController extends Controller
     {
         $sceances = Sceance::all();
         return view('sceances.index', compact('sceances'));
-    }
-
-    public function store(Request $request)
+        }
+    public function showAvailableSalles()
     {
+        $salles = Salle::whereNull('id_departement')->get();
+        $sceances = Sceance::all();
+        $cours = Cours::all();
+        return view('educational_service.emploidutemps', compact('salles', 'sceances','cours'));
+    }
+    public function getTimetableForSalle($salleId)
+    {
+        $sceances = Sceance::where('id_salle', $salleId)->get();
+        $salles = Salle::whereNull('id_departement')->get();
+        $cours = Cours::with('classe', 'classe.filiere', 'module')->get();
+
+        return view('educational_service.emploidutemps', compact('sceances', 'salles', 'cours'));
+    }
+    public function store(Request $request)
+    {   
         $sceance = Sceance::create($request->all());
         return back()->with('success', 'Sceance created successfully');
     }
@@ -65,12 +80,11 @@ class SceanceController extends Controller
 
     public function showForChief(Request $request)
     {
-        $chiefId = Auth::id();
-        $prof = Professeur::where('id_user', $chiefId)->first();
-        $departement = Departement::where('id_prof', $prof->id)->first();
-        $sceances = Sceance::where('id_salle', $departement->id)->get();
-
-        return view('Chief_Department.Emploi', compact('sceances'));
+        $salles = Salle::where('id_departement')->get();
+        $sceances = Sceance::all();
+        $cours = Cours::all();
+    
+        return view('Department_chief.emploi', compact('sceances', 'salles', 'cours'));
     }
     public function showForFiliereProf(Request $request)
     {
