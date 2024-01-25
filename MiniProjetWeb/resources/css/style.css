@@ -1,11 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
+/* =====================
+GENERAL STYLISH
+ =================== */
+
+.nav-toggler {
+    display: none;
+}
+
 * {
     font-family: 'Poppins', sans-serif;
     font-family: 'Roboto', sans-serif;
     margin: 0;padding: 0;box-sizing: border-box;
     text-decoration: none;
+    transition: .3s;
 
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+:root {
+    --blue-color : #429ef5 ;
+    --grey-color : #888;
+    --yellow-color : #F3C827;
 }
 
 body {
@@ -16,6 +36,11 @@ body {
 
 .login-modal.show {
     visibility: visible;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
 }
 /* 
 main {
@@ -100,7 +125,7 @@ main {
 }
 
 .container {
-    width: 80%;
+    width: 90%;
     margin: auto;
 }
 
@@ -118,7 +143,20 @@ main {
 
 }
 
-/* START HERO */
+
+.nav-btns .Home a {
+    margin: 0 .5rem;
+    border-radius: 10rem;
+}
+
+.nav-btns .Home a:hover {
+    background-color: var(--yellow-color);
+
+}
+
+/* ==================
+ START HERO
+ =====================*/
 
 .hero {
     min-height: 100vh;
@@ -190,7 +228,21 @@ main {
 
 .announcements {
     min-height: 100vh;
+}
 
+.announcements .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    /* background-color: #45a049; */
+}
+
+.announcements  .announcements-posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section-title {
@@ -203,13 +255,114 @@ main {
 
 .announcements .post {
     display: flex;
-    height: 200px;
+    height: 250px;
+    width: 80%;
     margin: 2rem 0;
-    background-color: #b8a40d;
-    border-radius: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.announcements .post-full-image {
+    width: 100%;
+    height: 200px;
+    background-image: url("../../public/assets/hero.png");
+    background-size: cover;
+    border-radius: 30px 30px 0 0  ;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.announcements .post-full-image::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;left: 0;
+    content: '';
+    border-radius: 30px 30px 0 0  ;
 
+    background-color: #000;
+    opacity: .5;
+    z-index: -1;
+}
+
+.announcements .post-full-image h4 a {
+    color: #ffff;
+    font-size: 2rem;
+
+    
+}
+
+.announcements .post-full-image  .post-date {
+   color: #429ef5;
+   font-weight: 900;
+}
+
+.announcements .full-post {
+    width: 100%;
+    min-height: 200px;
+    visibility: hidden;
+    transition: all .3s ease-in-out;
+}
+
+.announcements .full-post.show {
+    visibility: visible;
+}
+
+.announcements .post .sous-title {
+    border-bottom: .2rem solid var(--blue-color);
+    padding: .5rem 0;
+    font-weight: 700;
+    color: var(--yellow-color);
+}
+
+.announcements .full-post-content {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    padding: 1rem 0;
+    gap: 2rem;
+}
+
+.announcements .full-post-content p {
+    width: 80%;
+    font-size: 1rem;
+    line-height: 2rem;
+}
+
+.announcements .post .post-title a {
+    color: #000;
+}
+
+.announcements .post .post-btn {
+    color: var(--blue-color);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+}
+
+.announcements .post .post-btn i {
+    font-size: 1.4rem;
+}
+
+.announcements .post .post-btn:hover i {
+    transform: rotate(360deg);
+}
+
+.announcements .post .post-title a:hover {
+    color: var(--blue-color);
+}
+
+.announcements .post:nth-child(even) {
+    flex-direction: row-reverse;
+}
 
 .announcements .post-title {
     font-size: 1.5rem;
@@ -230,16 +383,92 @@ main {
     padding-left: 1.5rem;
     margin-top: 1rem;
     gap: 1rem;
-
+    width: 60%;
 }
 
 .announcements .post .imgBx {
-    width:40%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+
 }
 .announcements .post .imgBx img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
+}
+
+.footer {
+    background-color: var(--blue-color);
+    padding: 2rem;
+    color: #fff;
+    position: relative;
+}
+
+.footer .col-title {
+    font-size: 1.5rem;
+    margin: .5rem 0;
+}
+
+.footer ul {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    list-style: none;
+    margin: .5rem 0;
+}
+
+.footer ul li a:hover {
+    color: var(--yellow-color);
+}
+
+.footer ul li a:hover i {
+    transform: rotate(360deg);
+    color: var(--yellow-color);
+}
+
+.footer ul li i  {
+    color: var(--yellow-color);
+}
+
+.footer ul a {
+    color: #fff;
+}
+.footer .col .follow-us  {
+    display: flex;
+    flex-direction: row;
+    font-size: 2rem;
+    justify-content: center;
+}
+
+.footer .col .follow-us li a i {
+    color: #fff;
+
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.footer .col {
+    width: 25%;
+    padding: 0 0 2rem 0;
+}
+
+.bottom-footer {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 0;
+    background-color: #007ef4;
 }
 
 /* ============== ETUDIANT INTERFACE ========== */ 
@@ -247,7 +476,7 @@ main {
 .main-etudiant {
     height: 100vh;
     width: 80%;
-    position: absolute;
+    /* position: absolute; */
     right: 0;
     top: 0;
     
@@ -325,6 +554,8 @@ main {
     border-radius: 50%;
 }
 
+
+
 /* ==
 Faire un demande 
 == */
@@ -332,10 +563,8 @@ Faire un demande
 .faire-demande {
     width: 100%;
     height: 100%;
-    position: absolute;
     top: 0;
     right: 0;
-    display: none;
 }
 
 .faire-demande .section-container {
@@ -371,27 +600,112 @@ div .section-title {
     flex-direction: column;
     gap: .5rem;
 }
+
+/* Demande */
+.messages-container {
+    margin-left: 5rem;
+    border :0;
+    width: auto;
+    height: 100%;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.messages-container .tables-links {
+    margin: 1rem;
+    align-self: flex-end;
+    
+}
+
+
+.messages-container .messages-table td {
+    padding: 1rem 1.5rem;
+
+}
+
 /* Emploi du temps */
 
 #emploiSection {
-    margin: 0;
+    margin-left: 5rem;
     border :0;
     width: 100%;
     height: 100%;
     top: 0;
     right: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.scroll-container {
-    overflow-x: auto;
-    white-space: nowrap;
+#emploiSection .layer-form {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    visibility: hidden;
+
+}
+
+#emploiSection .layer-form::after {
+    position: fixed;
+    top: 0;
+    right: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #888;
+    opacity: .5;
+
+}
+
+#emploiSection .add_event {
+    position: absolute;
+    background-color: #429ef5;
+    padding: 2rem 5rem;
+    border-radius: 10px;
+    z-index: 999;
+    
+}
+
+#emploiSection .add_event form input, 
+#emploiSection .add_event form select,
+#emploiSection .add_event form textarea{
+    width: 350px;
+}
+
+
+
+#emploiSection .add_event form {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+}
+
+#emploiSection .add_event form .formBx {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+#emploiSection .layer-form.show {
+    visibility: visible;
 }
 
 .emploi-temps {
     border-collapse: collapse;
-    display: inline-block;
-    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .emploi-temps, .emploi-temps th, .emploi-temps td {
@@ -401,15 +715,17 @@ div .section-title {
 .emploi-temps th {
     background-color: #429ef5;
 }
-.emploi-temps th {
-    width: 120px;
-    height: 40px;
-    text-align: center; /* Center aligns the text */
+
+.emploi-temps td:hover {
+    background-color: aquamarine;
+    transition: .3s;
 }
-.emploi-temps td {
-    width: 120px;
-    height: 55px;
-    text-align: center; /* Center aligns the text */
+
+.emploi-temps th, .emploi-temps td {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+     /* Center aligns the text */
 }
 .emploi-temps th:empty, .emploi-temps td:empty {
     background-color: transparent;
@@ -422,11 +738,67 @@ div .section-title {
     max-width: 100%; /* Ensures the image is not bigger than its container */
 }
 
+.btn {
+    background-color: #005eb7;
+    color: #fff;
+    border: none;
+}
+
+.users_educational_service_div {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.users-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-layoutt {
+    display: none;
+}
+
+.form-layoutt .form-container  input {
+    padding: .5rem 1rem;
+    border: .1rem solid #cfcfcf;
+    border-radius: 20px;
+    margin: .2rem 0;
+    /* border-bottom: .5rem ; */
+    
+}
+
+.form-layoutt .form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-layoutt input:focus {
+    /* border: none; */
+    outline: none;
+}
+
+.form-layoutt.showForm {
+    display: block;
+}
+
+.users-container > div {
+    width: 50%;
+}
+
+@media screen and (min-width : 600px) {
+
+}
+
+
 /* Default size for viewports wider than 600px */
 @media (min-width: 601px) {
     .WebSiteLogo img {
         height: 100px; /* Set height, and let width adjust automatically */
     }
+
+
 }
 
 /* Adjust size for viewports 600px wide or less */
@@ -434,6 +806,15 @@ div .section-title {
     .WebSiteLogo img {
         height: 120px; /* Set height, and let width adjust automatically */
     }
+
+    .users-container {
+        flex-direction: column;
+    }
+    .users-container> div {
+        width: 100%;
+    }
+
+
 }
 
 
@@ -446,8 +827,12 @@ div .section-title {
 .users_educational_service_div {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    margin: 1rem;
+
+}
+
+.users_educational_service_div table {
+    margin: .5rem 0;
 }
 
 .users-container {
@@ -555,14 +940,14 @@ div .section-title {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-.container {
-    margin-left: 2em; /* Adjust based on the initial width of the sidebar */
+/* .container {
+    margin-left: 2em;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} */
 
 /* Add this CSS to your existing stylesheet */
 
@@ -689,40 +1074,4 @@ button {
     50% {
         transform: scale(1.2);
     }
-}
-.Submit-Button {
-    margin-top: 30px;
-}
-
-.add_event {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-#dateInfo {
-    display: none;
-}
-.blue {
-    background-color: blue;
-}
-
-.light-grey {
-    background-color: lightgrey;
 }

@@ -1,0 +1,33 @@
+
+.main-container .side_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.educational_service-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.index-formation .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.index-formation .link-container a {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.index-formation .link-container a i {
+    font-size: 3rem;
+}

@@ -12,11 +12,21 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="icon" type="image/x-icon" href="assets/iconsite.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 
     <!-- Scripts -->
+    @vite(["resources/CSS/educational_service.css"])
+    @vite(["resources/CSS/Users-style.css"])
+    @vite(["resources/CSS/demande.css"])
     @vite(["resources/js/sidebar-script.js","resources/CSS/sidebar-style.css"])
     @vite(["resources/js/script.js","resources/CSS/style.css"])
     @vite(["resources/CSS/home.css"])
+    @vite(["resources/CSS/stylingTable.css"])
+    @vite(["resources/js/emploi-script.js"])
+    @vite(["resources/js/home.js"])
+
+
 
 </head>
 <body>

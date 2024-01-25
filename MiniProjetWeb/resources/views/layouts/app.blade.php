@@ -10,12 +10,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link rel="icon" type="image/x-icon" href="assets/iconsite.png">
 
     <!-- Scripts -->
     @vite(["resources/CSS/home.css"])
     @vite(["resources/js/script.js","resources/CSS/style.css"])
+
 </head>
 <body>
     <div class = "main_container">
@@ -31,13 +34,13 @@
             @auth
                 <div class="nav-btns">
                     <div class="Home">
-                        <a class="dropdown-item" href="{{ route('auth.home') }}">
+                        <a class="dropdown-item btn" href="{{ route('auth.home') }}">
                          {{ __('Home') }}
                          <!-- Instead of recreating a newroute, just using the admin route to check for all the users
                             Since its checking if the user is an admin anyway, and redirect the admin in hes own pannel
                             at the end.-->
                         </a>
-                    <a class="loga" href="{{ route('logout') }}"
+                    <a class="loga btn" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
@@ -82,6 +85,7 @@
     </header>               
     <main class="py-4">
         @yield('content')
+        
         <!-- Calls the layout thats gonna be added here -->
     </main>
     </div>

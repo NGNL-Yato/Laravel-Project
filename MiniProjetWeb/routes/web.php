@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,20 @@ Route::get('Professor/indexDemande', function () {
     return view('Professor/indexDemande');
 })->name('indexDemande');
 
+
+
+Route::get('Professor/announces', function () {
+    return view('Professor/announces');
+})->name('announces');
+
+Route::get('Professor/emploi', function () {
+    return view('Professor/emploi');
+})->name('emploi');
+
+Route::get('Professor/indexDemande', function () {
+    return view('Professor/indexDemande');
+})->name('indexDemande');
+
 Auth::routes();
 
 // Need to recheck the routes for each page 
@@ -55,6 +70,12 @@ Route::get('Student/home', [App\Http\Controllers\Student\HomeController::class, 
 Route::get('Sector_responsible/home', [App\Http\Controllers\Sector_responsible\HomeController::class, 'home'])->name('Sector_responsible.home');
 Route::get('Department_chief/home', [App\Http\Controllers\Department_chief\HomeController::class, 'home'])->name('Department_chief.home');
 });
+
+
+Route::get('Professor/indexDemande', [App\Http\Controllers\Tables\DemandeController::class, 'listDemande'])->name('Professor.indexDemande');
+Route::get('Professor/indexDemande/{id}', [App\Http\Controllers\Tables\DemandeController::class, 'showDemande'])->name('Professor.demande');
+Route::put('Professor/indexDemande/{id}', [App\Http\Controllers\Tables\DemandeController::class, 'update'])->name('Professor.demande.update');
+
 
 //Users View for the Educational_Service View
 Route::get('Educational_Service/users', [App\Http\Controllers\Tables\UserController::class, 'listUsers'])->name('Educational_Service.users');
@@ -163,13 +184,42 @@ Route::post('Sector_responsible/annonces', [App\Http\Controllers\Tables\Annonces
 Route::put('Sector_responsible/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForChefDeFiliere'])->name('sector_responsible.updateAnnonce');
 Route::delete('Sector_responsible/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForChefDeFiliere'])->name('sector_responsible.destroyAnnonce');
 
-//Informations all users
 Route::get('/Professor/Informations', [App\Http\Controllers\InformationsController::class, 'showProfInformations'])->name('professor.informations');
 Route::get('/Student/Informations', [App\Http\Controllers\InformationsController::class, 'showEtudiantInformations'])->name('student.informations');
-Route::get('/Sector_responsible/Informations', [App\Http\Controllers\InformationsController::class, 'showSectorResponsibleInformations'])->name('Sector_responsible.informations');
-Route::get('/Department_chief/Informations', [App\Http\Controllers\InformationsController::class, 'showDepartmentChiefInformations'])->name('Department_chief.informations');
-Route::get('/Educational_Service/Informations', [App\Http\Controllers\InformationsController::class, 'showProfInformations'])->name('professor.informations');
 
+
+//Annonces professor
+Route::get('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForProfessor'])->name('professor.annonces');
+Route::post('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'storeForProfessor'])->name('professor.storeAnnonce');
+Route::put('/Professor/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForProfessor'])->name('professor.updateAnnonce');
+Route::delete('/Professor/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForProfessor'])->name('professor.destroyAnnonce');
+
+//Route::get('department-content', [App\Http\Controllers\TableController::class, 'listdepartement'])->name('departemnt.index');
+// routes/web.php
+
+use App\Http\Controllers\TableController;
+
+// ... autres routes ...
+
+Route::get('/departements/{name}', [TableController::class, 'showDepartement'])->name('departements.show');
+
+
+
+// routes/web.php
+
+// routes/web.php
+
+// routes/web.php
+
+use App\Http\Controllers\FiliereController;
+
+Route::get('/filieres', [FiliereController::class, 'index'])->name('filieres.index');
+
+// routes/web.php
+
+use App\Http\Controllers\AnnonceController;
+
+Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonce.index');
 
 //Annonces professor
 Route::get('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'annoncesForProfessor'])->name('professor.annonces');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Professor;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Demande;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,3 +13,4 @@ class HomeController extends Controller
         return redirect('Professor/annonces');
     }
 }
+
