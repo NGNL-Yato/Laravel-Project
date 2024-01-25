@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="professor-info">
+    <div class="professor-info educational_service-center">
         <h1>Professor Information</h1>
         <p><strong>Name:</strong> {{ $professeur->nom }} {{ $professeur->prenom }}</p>
         <p><strong>Code:</strong> {{ $professeur->Code_prof }}</p>

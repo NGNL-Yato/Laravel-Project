@@ -1,3 +1,17 @@
+
+.main-container .side_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.educational_service-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .index-formation .row {
     display: flex;
     flex-wrap: wrap;

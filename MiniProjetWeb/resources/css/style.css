@@ -4,6 +4,10 @@
 GENERAL STYLISH
  =================== */
 
+.nav-toggler {
+    display: none;
+}
+
 * {
     font-family: 'Poppins', sans-serif;
     font-family: 'Roboto', sans-serif;
@@ -743,8 +747,7 @@ div .section-title {
 .users_educational_service_div {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+
 }
 
 .users-container {
@@ -824,8 +827,12 @@ div .section-title {
 .users_educational_service_div {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    margin: 1rem;
+
+}
+
+.users_educational_service_div table {
+    margin: .5rem 0;
 }
 
 .users-container {

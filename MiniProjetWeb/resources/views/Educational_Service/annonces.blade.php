@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="annonce_div">
+    <div class="annonce_div educational_service-center">
         <!-- Button to Show/Hide Creation Form -->
         <button id="showCreateAnnonceForm">Add New Annonce</button>
 

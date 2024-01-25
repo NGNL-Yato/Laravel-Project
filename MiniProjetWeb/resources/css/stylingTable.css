@@ -3,19 +3,7 @@
 /*----------------------------------------------------------
 GENERAL
 ----------------------------------------------------------*/
-*{
-  margin:0;
-  padding:0;
-  font-family: 'Roboto', sans-serif;
-}
 
-html, body{
-  display:table;
-  height:100%;
-  width:100%;
-  color: #252a3b;
-  background-color: #f8f8f8;
-}
 .row__title{
   color: #53646f;
   font-weight: 400;
@@ -77,40 +65,13 @@ html, body{
    vertical-align: middle;
 }
 
-.table-row--chris .table-row__img {
-    background-image: url('https://images.pexels.com/photos/428333/pexels-photo-428333.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
+.table-row__td button {
+  background: none;
 }
 
-.table-row--angie .table-row__img {
-    background-image: url('https://images.pexels.com/photos/785667/pexels-photo-785667.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
+.action-td {
+  display: flex;
 }
-
-.table-row--ronald .table-row__img {
-    background-image: url('https://images.pexels.com/photos/211050/pexels-photo-211050.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
-}
-
-.table-row--june .table-row__img {
-    background-image: url('https://images.pexels.com/photos/709802/pexels-photo-709802.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
-}
-
-.table-row--ben .table-row__img {
-    background-image: url('https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
-}
-
-.table-row--natalie .table-row__img {
-    background-image: url('https://images.pexels.com/photos/38554/girl-people-landscape-sun-38554.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
-}
-
-.table-row--thomas .table-row__img {
-    background-image: url('https://images.pexels.com/photos/415326/pexels-photo-415326.jpeg?w=940&h=650&auto=compress&cs=tinysrgb');
-}
-
-
-
-
-
-
-
 
 .table-row__info {
     display: inline-block;
