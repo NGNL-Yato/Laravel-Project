@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,5 +45,35 @@ Route::get('Educational_Service/formation', [App\Http\Controllers\Tables\Formati
 Route::post('/formation', [App\Http\Controllers\Tables\FormationController::class, 'store'])->name('formations.store');
 Route::delete('/formation/{formation}', [App\Http\Controllers\Tables\FormationController::class,'destroy'])->name('formations.destroy');
 Route::put('/formation/{formation}', [App\Http\Controllers\Tables\FormationController::class, 'update'])->name('formations.update');
+
+
+//Route::get('department-content', [App\Http\Controllers\TableController::class, 'listdepartement'])->name('departemnt.index');
+// routes/web.php
+
+use App\Http\Controllers\TableController;
+
+// ... autres routes ...
+
+Route::get('/departements/{name}', [TableController::class, 'showDepartement'])->name('departements.show');
+
+
+
+// routes/web.php
+
+// routes/web.php
+
+// routes/web.php
+
+use App\Http\Controllers\FiliereController;
+
+Route::get('/filieres', [FiliereController::class, 'index'])->name('filieres.index');
+
+// routes/web.php
+
+use App\Http\Controllers\AnnonceController;
+
+Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonce.index');
+
+
 
 

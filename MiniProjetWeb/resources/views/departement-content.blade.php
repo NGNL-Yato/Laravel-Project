@@ -1,72 +1,135 @@
-
 @extends('layouts.app')
-<!-- U extends the layout to add the top layout in all pages -->
 
 @section('content')
-    <!-- the section part is added to include pages inside the layouts -->
-    <head>
-        <style>
-            .dropdown {
-                position: relative;
-                display: inline-block;
-            }
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+        }
 
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #3498db; /* Couleur de fond bleue */
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                z-index: 1;
-                border-radius: 0 0 10px 10px; /* Coins arrondis en bas */
-                top: 100%; /* Placez le menu en dessous du lien */
-                left: 0; /* Alignez le menu avec le coin gauche du lien */
-            }
+        .full-height {
+            height: 100vh;
+        }
 
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
+        .flex-center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
 
-            .dropdown-content a {
-                color: #fff;
-                padding: 10px;
-                text-decoration: none;
-                display: block;
-            }
+        .position-ref {
+            position: relative;
+        }
 
-            /* Styles pour le reste de la page */
-            .relative {
-                text-align: center;
-                margin-top: 50px; /* Ajoutez de l'espace au-dessus du titre */
-            }
+        .content {
+            text-align: center;
+        }
 
-            .main-title {
-                font-size: 2em;
-            }
+        .title {
+            font-size: 2em;
+        }
 
-            .departements-list {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-            }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-            .departements-list li {
-                display: inline-block;
-                position: relative;
-            }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #3498db;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 32px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s, transform 0.2s;
+        }
 
-            .departements-list li a {
-                display: block;
-                padding: 10px 15px;
-                text-decoration: none;
-                color: #000;
-            }
-        </style>
-    </head>
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    <body class="antialiased">
+        .dropdown-content a {
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .bg-dots-darker {
+            background-repeat: no-repeat;
+        }
+        .relative {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .main-title {
+            font-size: 2em;
+        }
+
+        .departements-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .departements-list li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .departements-list li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        /* Nouveau style pour la table */
+        .departement-info {
+            background-color: #3490dc;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .departement-info table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .departement-info table th, .departement-info table td {
+            border: 1px solid #ffffff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .departement-info table th {
+            background-color: #1e3a8a;
+            color: #fff;
+            
+        }
+
+        .departement-info table td {
+            background-color: #3c64b2;
+            color: #fff;
+        }
+    </style>
+
+    <body class="antialiased full-height">
         <a href="http://localhost:8000/register"> link </a>
-        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+        <div class="flex items-center justify-center min-h-screen bg-dots-darker bg-center bg-cover bg-no-repeat bg-fixed" style="background-image: url('{{URL('assets/FST-Tanger.png')}}');">
             <main class="main">
                 <section class="hero">
                     <h1 class="main-title">
@@ -80,38 +143,51 @@
                                 <div class="dropdown-content">
                                 <a href="{{ route('filieres.index', ['search' => 'IDAI']) }}">IDAI</a>
                                 <a href="{{ route('filieres.index', ['search' => 'AD']) }}">AD</a>
-                                <a href="{{ route('filieres.index', ['search' => 'Formation 3']) }}">Formation 3</a>
-
+                                <a href="{{ route('filieres.index', ['search' => 'Formation 3']) }}">Formation 3</a>>
                                 </div>
                             </li>
                             <li class="dropdown">
                                 <a href="{{ route('departements.show', ['name' => 'Mathematiques']) }}">Mathematiques</a>
                                 <div class="dropdown-content">
-                                <a href="#"> filieres 1</a>
-                                <a href="#"> filieres 2</a>
-                                <a href="#"> filieres 3</a>
+                                    <a href="#">filieres 1</a>
+                                    <a href="#">filieres 2</a>
+                                    <a href="#">filieres 3</a>
                                 </div>
                             </li>
                             <li class="dropdown">
                                 <a href="{{ route('departements.show', ['name' => 'Physiques']) }}">Physiques</a>
                                 <div class="dropdown-content">
-                                <a href="#"> filieres 1</a>
-                                <a href="#"> filieres 2</a>
-                                <a href="#"> filieres 3</a>
+                                    <a href="#">filieres 1</a>
+                                    <a href="#">filieres 2</a>
+                                    <a href="#">filieres 3</a>
                                 </div>
                             </li>
                             <li class="dropdown">
                                 <a href="{{ route('departements.show', ['name' => 'Chimie']) }}">Chimie</a>
                                 <div class="dropdown-content">
-                                <a href="#"> filieres 1</a>
-                                <a href="#"> filieres 2</a>
-                                <a href="#"> filieres 3</a>
+                                    <a href="#">filieres 1</a>
+                                    <a href="#">filieres 2</a>
+                                    <a href="#">filieres 3</a>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </section>
-                    <section class="announcements" style="margin-top: 50px;">
+                <!-- Affichage des informations du département -->
+                <div class="departement-info p-8 rounded-md shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">{{ $departement->nom_departement }}</h2>
+                    <table class="table">
+                        <tbody>
+                            @foreach($departement->getAttributes() as $key => $value)
+                                <tr>
+                                    <th>{{ $key }}</th>
+                                    <td>{{ $value }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <section class="announcements" style="margin-top: 50px;">
                     <div class="container">
                         <div class="section-title">
                             <h3>Latest Announcements</h3>
