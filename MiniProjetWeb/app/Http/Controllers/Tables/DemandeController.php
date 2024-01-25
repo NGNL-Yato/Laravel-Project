@@ -58,4 +58,19 @@ class DemandeController extends Controller
         $demandes = Demande::where('id_prof', $professor->id)->get();
         return view('Professor.Demande', compact('professor', 'demandes'));
     }
+    public function storeProfessor(Request $request)
+    {
+        $validatedData = $request->validate([
+            'contenu_demande' => 'required|string',
+        ]);
+
+        $validatedData['id_user'] = auth()->id();
+        $validatedData['etat_demande'] = 'En cours de Traitement';
+        $validatedData['type_demande'] = 'Réservation'; // Set default value for type_demande
+        $validatedData['id_etudiant'] = null; // Set default value for id_etudiant
+
+        Demande::create($validatedData);
+
+        return redirect()->route('Professor.Demande.store')->with('success', 'Demande added successfully');
+    }
 }

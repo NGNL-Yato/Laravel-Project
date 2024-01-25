@@ -374,17 +374,24 @@ div .section-title {
 /* Emploi du temps */
 
 #emploiSection {
-    position: absolute; 
     margin: 0;
     border :0;
     width: 100%;
     height: 100%;
     top: 0;
     right: 0;
+    display: flex;
+}
+
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .emploi-temps {
     border-collapse: collapse;
+    display: inline-block;
+    min-width: 100%;
 }
 
 .emploi-temps, .emploi-temps th, .emploi-temps td {
@@ -394,9 +401,14 @@ div .section-title {
 .emploi-temps th {
     background-color: #429ef5;
 }
-
-.emploi-temps th, .emploi-temps td {
-    width: 100px;
+.emploi-temps th {
+    width: 120px;
+    height: 40px;
+    text-align: center; /* Center aligns the text */
+}
+.emploi-temps td {
+    width: 120px;
+    height: 55px;
     text-align: center; /* Center aligns the text */
 }
 .emploi-temps th:empty, .emploi-temps td:empty {
@@ -680,4 +692,30 @@ button {
 }
 .Submit-Button {
     margin-top: 30px;
+}
+
+.add_event {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+#dateInfo {
+    display: none;
 }

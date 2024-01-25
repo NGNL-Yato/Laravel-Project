@@ -210,3 +210,4 @@ Route::get('/Chief_Department/Emploidutemps', [App\Http\Controllers\Tables\Scean
 Route::get('/Sector_responsible/Emploidutemps', [App\Http\Controllers\Tables\SceanceController::class, 'showForFiliereProf'])->name('Sector_responsible.Emploidutemps');
 Route::get('/Professor/emploidutemps', [App\Http\Controllers\Tables\SceanceController::class, 'showCoursesForProf'])->name('professor.emploidutemps');
 
+Route::post('/Professor/Demande', [App\Http\Controllers\Tables\DemandeController::class, 'storeProfessor'])->name('Professor.Demande.store');
