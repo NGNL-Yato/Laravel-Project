@@ -76,6 +76,9 @@
         </div>
     </div>
 </div>
-@endsection
 
-@include('Sector_responsible.home')
+
+@include('Professor.home')
+
+
+@endsection

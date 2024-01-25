@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('etat_sceance');
             $table->string('type_sceance');
-            $table->foreignId('id_class')->constrained('classes');
-            $table->foreignId('id_module')->constrained('modules');
-            $table->string('mois');
+            $table->integer('horaire');
+            $table->integer('jour');
             $table->integer('semaine');
-            $table->foreignId('id_horaire')->constrained('horaires');
-            $table->foreignId('id_jour')->constrained('jours');
+            $table->integer('mois');
+            $table->integer('annee');
+            $table->foreignId('id_class')->nullable()->constrained('classes');
+            $table->foreignId('id_cours')->nullable()->constrained('cours');
             $table->foreignId('id_salle')->constrained('salles');
             $table->timestamps();
         });        

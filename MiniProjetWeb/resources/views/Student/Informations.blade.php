@@ -6,7 +6,7 @@
         <h1>Student Information</h1>
         <div class="info-section">
             <h3>Name</h3>
-            <p>{{ $etudiant->Nom }} {{ $etudiant->prenom }}</p>
+            <p>{{ $etudiant->nom }} {{ $etudiant->prenom }}</p>
         </div>
         
         <div class="info-section">

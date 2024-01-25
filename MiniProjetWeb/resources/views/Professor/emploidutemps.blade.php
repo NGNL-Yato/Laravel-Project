@@ -10,20 +10,36 @@
         <div class="cd-schedule loading">
             <div class="timeline">
                 <table class="emploi-temps">
-                    <tr>
-                        <th class = "Empty_Space"></th><!--Empty to leave a space in the first td-->
-                        @foreach($jours as $jour)
-                            <th>{{ $jour->nom }}</th>
-                        @endforeach
-                    </tr>
-                    @foreach($horaires as $horaire)
+                    <thead>
                         <tr>
-                            <td class="hour-case">{{ $horaire->heure_debut }} - {{ $horaire->heure_fin }}</td>
-                            @foreach($jours as $jour)
-                                <td>  </td>
+                            <th>Time</th>
+                            <th>Lundi</th>
+                            <th>Mardi</th>
+                            <th>Mercredi</th>
+                            <th>Jeudi</th>
+                            <th>Vendredi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                        $times = ['9 - 10h45', '11 - 12h45', '13 - 14h45', '15 - 16h45', '17 - 18h45'];
+                        $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
+                        @endphp
+                        @foreach($times as $time)
+                        <tr>
+                            <td>{{ $time }}</td>
+                            @foreach($days as $day)
+                            <td>
+                                @foreach($sceances as $sceance)
+                                @if($sceance->day == $day && $sceance->time == $time)
+                                {{ $sceance->title }}
+                                @endif
+                                @endforeach
+                            </td>
                             @endforeach
                         </tr>
-                    @endforeach
+                        @endforeach
+                    </tbody>                
                 </table>
             </div> <!-- .timeline -->
             <div class="event-modal">
@@ -66,7 +82,7 @@
                     </div>
                 </div>
                 <div class="formBx">
-                    <label for="">departement</label>
+                    <label for="">Departement</label>
                     <div class="inputBx">
                         <input type="text">
                     </div>
@@ -76,6 +92,8 @@
         </div>
     </div>
 </div>
-@endsection
+
 
 @include('Professor.home')
+
+@endsection

@@ -1,3 +1,6 @@
+@extends('layouts.sidebar')
+
+@section('content')
 @include("Student.home")
 <div class="messages-container">
     <div class="tables-links">
@@ -22,5 +25,6 @@
     </table>
     </div>
 </div>
-@extends("Student.faireDemande")
+@include("Student.faireDemande")
 
+@endsection
