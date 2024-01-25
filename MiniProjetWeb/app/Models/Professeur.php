@@ -22,5 +22,9 @@ class Professeur extends Model
     {
         return $this->hasOne(Filiere::class, 'id_prof');
     }
+    public function cours()
+    {
+        return $this->hasMany(Cours::class, 'id_prof');
+    }
     
 }

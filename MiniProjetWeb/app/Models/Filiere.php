@@ -24,4 +24,8 @@ class Filiere extends Model
     {
         return $this->belongsTo(Professeur::class, 'id_prof');
     }
+        public function classes()
+    {
+        return $this->hasMany(Classe::class, 'id_filiere');
+    }
 }

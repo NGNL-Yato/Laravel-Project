@@ -93,17 +93,6 @@
     border: none;
   }
   
-  .search__wrapper svg {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 0.75rem;
-    width: 1.5rem;
-    height: 1.5rem;
-    stroke: var(--text-link);
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
   
   /*? sidebar top */
   .sidebar-top-wrapper {

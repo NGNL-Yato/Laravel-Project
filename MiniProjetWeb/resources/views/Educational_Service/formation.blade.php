@@ -32,6 +32,8 @@
             </tbody>
         </table>
 
+        
+
         <!-- Edit Form (Hidden Initially) -->
         <div id="editForm" style="display:none;">
             <form id="editFormContent" action="{{ route('formations.update', $formation->id) }}" method="POST">

@@ -59,9 +59,6 @@
                     <select id="role" name="role">
                         <option value="1">Etudiant</option>
                         <option value="2">Professeur</option>
-                        <option value="3">Chef de Filiere</option>
-                        <option value="4">Chef de departement</option>
-                        <option value="5">Responsable de scolarite</option> 
                     </select>
                 </div>
 

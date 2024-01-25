@@ -25,12 +25,12 @@ td {
 .hidden-edit-form {
     display: none;
 }
-.container {
+/* .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
-}
+    height: 100vh; 
+} */
 
 .row {
     width: 100%; /* Full width of the container */

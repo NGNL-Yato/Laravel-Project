@@ -7,12 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Demande;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller {
-
-        public function home()
-        {
-            return view ('Professor.home');
-        }        
-        
+class HomeController extends Controller
+{
+    public function home() {
+        return redirect('Professor/annonces');
+    }
 }
 

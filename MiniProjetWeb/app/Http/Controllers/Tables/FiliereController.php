@@ -24,7 +24,6 @@ class FiliereController extends Controller
     }
     public function store(Request $request)
     {
-        logger($request->all());
         $validatedData = $request->validate([
             'nom_filiere' => 'required',
             'abreviation_nomfiliere' => 'required',
@@ -33,7 +32,11 @@ class FiliereController extends Controller
             'id_prof' => 'required|exists:professeurs,id'
         ]);
 
-        Filiere::create($validatedData);
+        $filiere = Filiere::create($validatedData);
+
+        // Update the user's role to 3 (chef de filiere)
+        $filiere->professeur->user->update(['role' => 3]);
+
         return redirect()->route('filieres.index')->with('success', 'Filiere created successfully');
     }
 
@@ -50,12 +53,29 @@ class FiliereController extends Controller
         $filiere = Filiere::findOrFail($id);
         $filiere->update($validatedData);
 
+        // Update the new chef de filiere's role to 3
+        $filiere->professeur->user->update(['role' => 3]);
+
+        // If the old chef de filiere is not a chef de filiere anymore, update their role to 2
+        if ($filiere->getOriginal('id_prof') != $filiere->id_prof) {
+            $oldProfesseur = Professeur::find($filiere->getOriginal('id_prof'));
+            if ($oldProfesseur && !$oldProfesseur->filiere) {
+                $oldProfesseur->user->update(['role' => 2]);
+            }
+        }
+
         return redirect()->route('filieres.index')->with('success', 'Filiere updated successfully');
     }
 
     public function destroy($id)
     {
         $filiere = Filiere::findOrFail($id);
+
+        // If the chef de filiere is not a chef de filiere anymore, update their role to 2
+        if ($filiere->professeur && !$filiere->professeur->filiere) {
+            $filiere->professeur->user->update(['role' => 2]);
+        }
+
         $filiere->delete();
 
         return redirect()->route('filieres.index')->with('success', 'Filiere deleted successfully');
