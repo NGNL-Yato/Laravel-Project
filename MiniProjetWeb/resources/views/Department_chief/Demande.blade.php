@@ -17,6 +17,27 @@
                         <p><strong>Envoyé par:</strong> {{ $demande->user->email}}</p>
                         <p><strong>Envoyé à:</strong> {{ $demande->professeur ? $demande->professeur->user->email : 'No professor selected' }}</p>                    
                     </div>
+                    @if($demande->etat_demande == 'En cours de Traitement')
+                <button class="Submit-Button" onclick="openModal('response-form-{{ $demande->id }}')">Répondre</button>
+                @endif
+                </div>
+                <div id="response-form-{{ $demande->id }}" class="modal">
+                    <div class="modal-inner">
+                        <div class="modal-content">
+                    <span class="close" onclick="closeModal('response-form-{{ $demande->id }}')">&times;</span>
+                    <form action="{{ route('Department_chief.Demande.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="demande_id" value="{{ $demande->id }}">
+                        <textarea name="content" required></textarea>
+                        <select name="etat_demande">
+                            <option value="Traité">Traité</option>
+                            <option value="Refusé">Refusé</option>
+                        </select>
+                        <button type="submit">Envoyer la réponse</button>
+                    </form>
+                </div>
+            </div>
+
                 </div>
             @endforeach
         </div>
@@ -25,37 +46,40 @@
         <div id="createDemandeForm" class="modal" style="display:none;">
             <div class="modal-content">
                 <span class="close" onclick="editModal.style.display='none'">&times;</span>
-                <form action="{{ route('student.store') }}" method="POST">
+                <form action="{{ route('Department_chief.Demande.store') }}" method="POST">
                     @csrf
                     <select id="creationTypeDemande" name="type_demande">
                         <option value="Demande de rendez-vous">Demande de rendez-vous</option>
                         <option value="Demande de lettre de recommandation">Demande de lettre de recommandation</option>
-                        <option value="Justification d'une absence">Justification d'une absence</option>
-                        <option value="Demande de changement de groupe de TP">Demande de changement de groupe de TP</option>
-                        @if(auth()->user()->etudiant->delegue)
-                        <option value="Signalement Matériel">Signalement Matériel</option>
-                        @endif
-                    </select>
-                    <!-- Professor Selection -->
-                    <select name="id_prof">
-                        <option value="">Choose a professor</option>
-                        @foreach($professeurs as $prof)
-                            <option value="{{ $prof->id }}">{{ $prof->nom }} {{ $prof->prenom }}</option>
+                        <option value="Convocation">Convocation</option>
+                    </select>                    
+                    <textarea name="contenu_demande" placeholder="Content" required></textarea>
+                    <select id="professorInput" name="id_prof">
+                        <option value="">Select a professor (optional)</option>
+                        @foreach($professors as $professor)
+                            <option value="{{ $professor->id }}">
+                                {{ $professor->nom }} {{ $professor->prenom }}
+                                @foreach($departements as $departement)
+                                    @if($departement->professeur->id == $professor->id) - {{ $departement->nom_departement }}
+                                    @endif
+                                @endforeach
+                                @foreach($filieres as $filiere)
+                                    @if($filiere->professeur->id == $professor->id) - {{ $filiere->nom_filiere }}
+                                    @endif
+                                @endforeach
+                            </option>
                         @endforeach
                     </select>
 
-                    <textarea name="contenu_demande" placeholder="Content" required></textarea>
-
-                    <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
-
                     <button type="submit">Create</button>
                 </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-@include('Student.home')
+@include('Department_chief.home')
 <script>
     // Get the modal
     var createModal = document.getElementById("createDemandeForm");
@@ -109,6 +133,34 @@
             editModal.style.display = 'block';
         }
     }, false);
+    function openModal(id) {
+        var modal = document.getElementById(id);
+        modal.style.display = "block";
+    }
+
+    function closeModal(id) {
+        var modal = document.getElementById(id);
+        modal.style.display = "none";
+    }
+    // Get all modals
+    var modals = document.getElementsByClassName('modal');
+
+    // Function to close modal
+    function closeModalOnOutsideClick(event) {
+    for (var i = 0; i < modals.length; i++) {
+        var modal = modals[i];
+        var modalInner = modal.getElementsByClassName('modal-inner')[0];
+        if (event.target == modal && event.target != modalInner) {
+            modal.style.display = "none";
+        }
+    }
+}
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}    window.onclick = closeModalOnOutsideClick;
 </script>
 
 @endsection
+
+
+

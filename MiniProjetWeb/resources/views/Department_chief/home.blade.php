@@ -29,7 +29,7 @@
     </a>
   </li>
   <li>
-    <a href="{{URL('Department_chief/indexDemande')}}" data-id="emploi" title="emploi" class="tooltip">
+    <a href="{{URL('Department_chief/Demande')}}" data-id="emploi" title="emploi" class="tooltip">
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard" width="24"
         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">

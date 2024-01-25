@@ -26,10 +26,6 @@ Route::get('Educational_Service/indexformations', function () {
 Route::get('Educational_Service/indexSalles', function () {
     return view('Educational_Service/indexSalles');
 })->name('indexsalle');
-    
-Route::get('Department_chief/indexDemande', function () {
-    return view('Department_chief/indexDemande');
-})->name('indexDemande');
 
 Route::get('Department_chief/indexEmploi', function () {
     return view('Department_chief/indexEmploi');
@@ -202,13 +198,13 @@ Route::delete('/Emploi/{emploi}', [App\Http\Controllers\Tables\SceanceController
 
 
 //chief departement routes
-Route::post('/Chief_Department/Emploi', [App\Http\Controllers\Tables\SceanceController::class, 'storeByChief'])->name('Chief_Department.Emploi.store');
-Route::put('/Chief_Department/Emploi/{emploi}', [App\Http\Controllers\Tables\SceanceController::class, 'updateByChief'])->name('Chief_Department.Emploi.update');
-Route::delete('/Chief_Department/Emploi/{emploi}', [App\Http\Controllers\Tables\SceanceController::class, 'destroyByChief'])->name('Chief_Department.Emploi.destroy');
+Route::post('/Department_chief/Emploi', [App\Http\Controllers\Tables\SceanceController::class, 'storeByChief'])->name('Department_chief.Emploi.store');
+Route::put('/Department_chief/Emploi/{emploi}', [App\Http\Controllers\Tables\SceanceController::class, 'updateByChief'])->name('Department_chief.Emploi.update');
+Route::delete('/Department_chief/Emploi/{emploi}', [App\Http\Controllers\Tables\SceanceController::class, 'destroyByChief'])->name('Department_chief.Emploi.destroy');
 
 //ALl views/index
 Route::get('/Student/emploidutemps', [App\Http\Controllers\Tables\SceanceController::class, 'showForStudent'])->name('student.emploidutemps');
-Route::get('/Chief_Department/emploidutemps', [App\Http\Controllers\Tables\SceanceController::class, 'showForChief'])->name('chief_Department.emploidutemps');
+Route::get('/Department_chief/emploidutemps', [App\Http\Controllers\Tables\SceanceController::class, 'showForChief'])->name('chief_Department.emploidutemps');
 Route::get('/Sector_responsible/emploidutemps', [App\Http\Controllers\Tables\SceanceController::class, 'showForFiliereProf'])->name('sector_responsible.emploidutemps');
 Route::get('/Professor/emploidutemps', [App\Http\Controllers\Tables\SceanceController::class, 'showCoursesForProf'])->name('professor.emploidutemps');
 
@@ -218,7 +214,7 @@ Route::post('/Professor/Demande', [App\Http\Controllers\Tables\DemandeController
 Route::post('/sector_responsible/Demande', [App\Http\Controllers\Tables\ResponseController::class, 'storeChefFiliere'])->name('sector_responsible.Demande.store');
 
 //Reponse integre for responsable
-Route::get('/Sector_responsible/Demande', [App\Http\Controllers\Tables\ResponseController::class, 'showChefFiliereResponses'])->name('sector_responsible.Demande.store');
+Route::get('/Sector_responsible/Demande', [App\Http\Controllers\Tables\ResponseController::class, 'showChefFiliereResponses'])->name('sector_responsible.Demande.show');
 Route::post('/Sector_responsible/Demande', [App\Http\Controllers\Tables\ResponseController::class, 'storeChefFiliere'])->name('sector_responsible.Demande.store');
 
 
@@ -227,9 +223,21 @@ Route::get('/Sector_responsible/Demande', [App\Http\Controllers\Tables\DemandeCo
 Route::post('/Sector_responsible/Demande', [App\Http\Controllers\Tables\DemandeController::class, 'storeChefFiliereDemande'])->name('sector_responsible.store');
 Route::delete('/Sector_responsible/Demande/{demande}', [App\Http\Controllers\Tables\DemandeController::class, 'destroyChefFiliereDemande'])->name('sector_responsible.destroy');
 
-// All responses views
+// All Reponse views
 Route::get('/Student/reponse', [App\Http\Controllers\Tables\ResponseController::class, 'showStudentResponses'])->name('student.reponse');
 Route::get('/Professor/reponse', [App\Http\Controllers\Tables\ResponseController::class, 'showProfessorResponses'])->name('professor.reponse');
 Route::get('/Sector_responsible/reponse', [App\Http\Controllers\Tables\ResponseController::class, 'showChefFiliereResponses'])->name('sector_responsible.reponse');
-Route::get('/Chief_Department/reponse', [App\Http\Controllers\Tables\ResponseController::class, 'showChefDepartmentResponses'])->name('chief_department.reponse');
-Route::get('/Educational_Service/reponse', [App\Http\Controllers\Tables\ResponseController::class, 'showServiceEducationnel'])->name('educational_service.reponse');
+Route::get('/Department_chief/Reponse', [App\Http\Controllers\Tables\ResponseController::class, 'showChefDepartmentResponses'])->name('department_chief.reponse');
+Route::get('/Educational_Service/Reponse', [App\Http\Controllers\Tables\ResponseController::class, 'showServiceEducationnel'])->name('educational_service.reponse');
+Route::post('/Department_chief/Demande', [App\Http\Controllers\Tables\ResponseController::class, 'storeChefDepartement'])->name('department_chief.reponse.store');
+
+
+// All Demandes for the Department Chief
+Route::get('/Department_chief/Demande', [App\Http\Controllers\Tables\DemandeController::class, 'showDepartmentChief'])->name('Department_chief.Demande');
+Route::post('/Department_chief/Demande', [App\Http\Controllers\Tables\ResponseController::class, 'storeChefDepartement'])->name('Department_chief.Demande.store');
+Route::delete('/Department_chief/Demande/{id}', [App\Http\Controllers\Tables\DemandeController::class, 'destroyDepartmentChief'])->name('Department_chief.Demande.destroy');
+
+
+
+
+Route::get('/Educational_Service/Demande', [App\Http\Controllers\Tables\DemandeController::class, 'ViewEducational_Service'])->name('educational_service.demande');

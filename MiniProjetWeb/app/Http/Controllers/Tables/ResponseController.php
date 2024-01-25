@@ -89,13 +89,9 @@ class ResponseController extends Controller
     }
     public function storeChefFiliere(Request $request)
     {
+
         $userId = Auth::id();
         $demande = Demande::find($request->demande_id);
-
-        if (!$demande) {
-            return back()->with('error', 'Demande not found');
-        }
-
         $response = new Response;
         $response->content = $request->content;
         $response->demande_id = $demande->id;
@@ -130,27 +126,32 @@ class ResponseController extends Controller
     public function showChefDepartmentResponses(Request $request)
     {
         $userId = Auth::id();
-        $responses = Response::whereHas('demande', function ($query) use ($userId) {
+        $responsesofDemande = Response::whereHas('demande', function ($query) use ($userId) {
             $query->where('id_user', $userId);
         })->get();
-
-        return view('chief_department.reponse', compact('responses'));
+        $responses = Response::where('user_id', $userId)->get();
+        $reponses = $responsesofDemande->merge($responses);
+        return view('department_chief.reponse', compact('responses'));
     }
     public function showChefFiliereResponses(Request $request)
     {
         $userId = Auth::id();
-        $responses = Response::whereHas('demande', function ($query) use ($userId) {
+        $responsesofDemande = Response::whereHas('demande', function ($query) use ($userId) {
             $query->where('id_user', $userId);
         })->get();
+        $responses = Response::where('user_id', $userId)->get();
+        $reponses = $responsesofDemande->merge($responses);
 
         return view('sector_responsible.reponse', compact('responses'));
     }
     public function showServiceEducationnel(Request $request)
     {
         $userId = Auth::id();
-        $responses = Response::whereHas('demande', function ($query) use ($userId) {
+        $responsesofDemande = Response::whereHas('demande', function ($query) use ($userId) {
             $query->where('id_user', $userId);
         })->get();
+        $responses = Response::where('user_id', $userId)->get();
+        $reponses = $responsesofDemande->merge($responses);
 
         return view('educational_service.reponse', compact('responses'));
     }
