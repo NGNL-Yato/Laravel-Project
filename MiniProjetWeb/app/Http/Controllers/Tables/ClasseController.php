@@ -6,6 +6,7 @@ use App\Models\Classe;
 use App\Models\Filiere;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClasseController extends Controller
 {

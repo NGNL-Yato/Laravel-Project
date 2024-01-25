@@ -4,8 +4,8 @@
         <button href="" id="faireDemande" class="btn">Faire une demande</button>
     </div>
     <div class="messages-table">
-    <table >
-        <thead>
+    <table class="table">
+        <thead >
             <td>ID</td>
             <td>Subject</td>
             <td>From</td>

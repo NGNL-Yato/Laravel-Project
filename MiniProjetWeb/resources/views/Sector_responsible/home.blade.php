@@ -1,4 +1,3 @@
-@extends('layouts.sidebar')
 @section("navLinks")
 <li>
     <a href="{{URL('Sector_responsible/annonces')}}" data-id="emploi" title="emploi" class="tooltip">

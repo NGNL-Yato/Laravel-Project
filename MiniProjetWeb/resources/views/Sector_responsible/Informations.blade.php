@@ -33,4 +33,3 @@
 @include('Sector_responsible.home')
 
 @endsection
-

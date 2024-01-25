@@ -3,23 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Sceance extends Model
 {
+    use HasFactory;
     protected $table = 'sceances';
-
     protected $fillable = [
         'etat_sceance',
         'type_sceance',
-        'id_class',
-        'id_module',
-        'mois',
+        'horaire',
+        'jour',
         'semaine',
-        'id_horaire',
-        'id_jour',
+        'mois',
+        'annee',
+        'id_class',
+        'id_cours',
         'id_salle',
     ];
-
     public function classe()
     {
         return $this->belongsTo(Classe::class, 'id_class');
@@ -29,17 +30,6 @@ class Sceance extends Model
     {
         return $this->belongsTo(Module::class, 'id_module');
     }
-
-    public function horaire()
-    {
-        return $this->belongsTo(Horaire::class, 'id_horaire');
-    }
-
-    public function jour()
-    {
-        return $this->belongsTo(Jour::class, 'id_jour');
-    }
-
     public function salle()
     {
         return $this->belongsTo(Salle::class, 'id_salle');

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('type_demande');
             $table->string('contenu_demande');
             $table->string('etat_demande');
-            $table->unsignedBigInteger('id_prof'); 
-            $table->foreign('id_prof')->references('id')->on('professeurs'); 
+            $table->unsignedBigInteger('id_prof')->nullable();
+            $table->foreign('id_prof')->references('id')->on('professeurs');
             $table->timestamps();
         });
         
