@@ -719,3 +719,10 @@ button {
 #dateInfo {
     display: none;
 }
+.blue {
+    background-color: blue;
+}
+
+.light-grey {
+    background-color: lightgrey;
+}

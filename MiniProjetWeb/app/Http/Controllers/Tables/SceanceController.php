@@ -60,7 +60,7 @@ class SceanceController extends Controller
         $studentId = Auth::id(); // Get the current user's ID
         $student = Etudiant::where('id_user', $studentId)->first(); // Find the student with this user ID
         $sceances = Sceance::where('id_class', $student->id_class)->get();
-        return view('Student.Emploi', compact('sceances'));
+        return view('student.emploidutemps', compact('sceances'));
     }
 
     public function showForChief(Request $request)

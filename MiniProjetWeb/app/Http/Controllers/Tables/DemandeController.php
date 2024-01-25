@@ -71,6 +71,42 @@ class DemandeController extends Controller
 
         Demande::create($validatedData);
 
-        return redirect()->route('Professor.Demande.store')->with('success', 'Demande added successfully');
+        return redirect()->route('sector_responsible.store')->with('success', 'Demande added successfully');
+    }
+    public function showChefFiliereDemandes(Request $request)
+    {
+        $userId = Auth::id();
+        $subjects = ['Justification d\'une absence', 'Demande de rendez-vous', 'Demande de lettre de recommandation'];
+        $demandesUser = Demande::where('id_user', $userId)->get();
+        $professor = Professeur::where('id_user', $userId)->first();
+        $demandes = Demande::whereNull('id_prof')
+            ->whereIn('type_demande', $subjects)
+            ->whereHas('user.etudiant.classe.filiere', function ($query) use ($professor) {
+                $query->where('id_prof', $professor->id);
+            })->get();
+        $demandes = $demandes->merge($demandesUser);
+        return view('sector_responsible.demande', compact('demandes','professor'));
+    }
+    public function storeChefFiliereDemande(Request $request)
+    {
+        $validatedData = $request->validate([
+            'type_demande' => 'required|string',
+            'contenu_demande' => 'required|string',
+            'id_prof' => 'nullable|exists:professeurs,id',
+        ]);
+
+        $validatedData['id_user'] = auth()->id();
+        $validatedData['etat_demande'] = 'En cours de Traitement';
+
+        Demande::create($validatedData);
+
+        return redirect()->back()->with('success', 'Demande deleted successfully.');
+    }
+    public function destroyChefFiliereDemande($id)
+    {
+        $demande = Demande::findOrFail($id);
+        $demande->delete();
+
+        return redirect()->back()->with('success', 'Demande deleted successfully.');
     }
 }

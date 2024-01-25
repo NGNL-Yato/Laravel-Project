@@ -5,106 +5,58 @@
     <div class="demande_div">
         <!-- Button to Show Creation Form -->
         <button id="showCreateDemandeForm">Add New Demande</button>
-
         <!-- Table for Showing Demandes -->
         <div class="demandes-container">
             @foreach($demandes as $demande)
                 <div class="demande-card">
                     <div class="demande-content">
-                        <h3>{{ $demande->type_demande }}</h3>
+                        <h3>{{  $demande->type_demande }}</h3>
                         <p class="demande-text">{{ $demande->contenu_demande }}</p>
                         <p><strong>Status:</strong> {{ $demande->etat_demande }}</p>
                         <p><strong>Envoyé par:</strong> {{ $demande->user->email}}</p>
                     </div>
-                    <div class="demande-actions">
-                        @if(auth()->user()->id == $demande->id_user)
-                        <button class="editDemandeButton" 
-                        data-id="{{ $demande->id }}"
-                        data-type-demande="{{ $demande->type_demande }}"
-                        data-contenu-demande="{{ $demande->contenu_demande }}"
-                        data-etat-demande="{{ $demande->etat_demande }}"
-                        data-id-prof="{{ $demande->id_prof }}">
-                        🖉
-                        </button>
-                        <form action="{{ route('student.destroy', $demande->id) }}" method="POST">
+                    @if($demande->etat_demande == 'En cours de Traitement'&& $demande->id_user != auth()->user()->id)
+                    <button class="Submit-Button" onclick="openModal('response-form-{{ $demande->id }}')">Répondre</button>
+                    @endif
+                </div>
+                <div id="response-form-{{ $demande->id }}" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('response-form-{{ $demande->id }}')">&times;</span>
+                        <form action="{{ route('sector_responsible.Demande.store') }}" method="POST">
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" id="delet-form-bt">&times;</button>
+                            <input type="hidden" name="demande_id" value="{{ $demande->id }}">
+                            <textarea name="content" required></textarea>
+                            <select name="etat_demande">
+                                <option value="Traité">Traité</option>
+                                <option value="Refusé">Refusé</option>
+                            </select>
+                            <button type="submit">Envoyer la réponse</button>
                         </form>
-                        @endif
                     </div>
                 </div>
             @endforeach
-        </div>
-
-        <!-- Edit Form (Hidden Initially) -->
-        <div id="editDemandeForm" class="modal" style="display:none;">
-            <div class="modal-content">
-                <span class="close" onclick="editModal.style.display='none'">&times;</span>
-                <form id="editDemandeFormContent" method="POST">
-                    @csrf
-                    @method('PUT')
-                    {{-- <select id="editEtatDemande" name="etat_demande">
-                        <option value="Traité">Traité</option>
-                        <option value="En cours de Traitement">En cours de Traitement</option>
-                        <option value="Refusé">Refusé</option>
-                    </select> --}}
-                    
-                    <select id="editTypeDemande" name="type_demande">
-                        <option value="Demande de rendez-vous">Demande de rendez-vous</option>
-                        <option value="Demande de lettre de recommandation">Demande de lettre de recommandation</option>
-                        <option value="Justification d'une absence">Justification d'une absence</option>
-                        <option value="Demande de changement de groupe de TP">Demande de changement de groupe de TP</option>
-                        @if(auth()->user()->etudiant->delegue)
-                        <option value="Signalement Matériel">Signalement Matériel</option>
-                        @endif
-                    </select>
-                    <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
-                    <textarea id="editContenuDemande" name="contenu_demande" placeholder="Content"></textarea>
-
-                    <button type="submit">Update</button>
-                </form>          
-            </div>  
-        </div>
-
+        </div>  
         <!-- Creation Form -->
         <div id="createDemandeForm" class="modal" style="display:none;">
             <div class="modal-content">
                 <span class="close" onclick="editModal.style.display='none'">&times;</span>
-                <form action="{{ route('student.store') }}" method="POST">
+                <form action="{{ route('sector_responsible.store') }}" method="POST">
                     @csrf
-                     {{--<select name="etat_demande">
-                        <option value="Traité">Traité</option>
-                        <option value="En cours de Traitement">En cours de Traitement</option>
-                        <option value="Refusé">Refusé</option>
-                    </select>
-                     --}}
                     <select id="creationTypeDemande" name="type_demande">
-                        <option value="Demande de rendez-vous">Demande de rendez-vous</option>
-                        <option value="Demande de lettre de recommandation">Demande de lettre de recommandation</option>
-                        <option value="Justification d'une absence">Justification d'une absence</option>
-                        <option value="Demande de changement de groupe de TP">Demande de changement de groupe de TP</option>
-                        @if(auth()->user()->etudiant->delegue)
-                        <option value="Signalement Matériel">Signalement Matériel</option>
-                        @endif
+                        <option value="Demande de réunion">Demande de réunion</option>
+                        <option value="Demande de ravitaillement">Demande de ravitaillement</option>
+                        <option value="Justification de changement de bureau">Justification de changement de bureau</option>
                     </select>
                     <textarea name="contenu_demande" placeholder="Content" required></textarea>
-
                     <input type="hidden" name="id_user" value="{{ auth()->user()->id }}">
-                    
                     <button type="submit">Create</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-@include('Student.home')
+@include('Sector_responsible.home')
 <script>
-    // Get the modal
-    var createModal = document.getElementById("createDemandeForm");
-    var editModal = document.getElementById("editDemandeForm");
-
     // Get the button that opens the modal
     var createBtn = document.getElementById("showCreateDemandeForm");
 
@@ -138,6 +90,14 @@
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('editDemandeButton')) {
             var demandeId = event.target.dataset.id;
+            // ...
+        }
+    });
+
+    // Event delegation for edit buttons
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('editDemandeButton')) {
+            var demandeId = event.target.dataset.id;
             var typeDemande = event.target.dataset.typeDemande;
             var contenuDemande = event.target.dataset.contenuDemande;
 
@@ -153,6 +113,21 @@
             editModal.style.display = 'block';
         }
     }, false);
+
+    // Close the modal when the user clicks outside of the modal content
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    function openModal(id) {
+    var modal = document.getElementById(id);
+    modal.style.display = "block";
+}
+    function closeModal(id) {
+        var modal = document.getElementById(id);
+        modal.style.display = "none";
+    }
 </script>
 
 @endsection

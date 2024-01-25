@@ -21,5 +21,5 @@
     </div>
 </div>
 
-@include('Professor.home')
+@include('Department_chief.home')
 @endsection
