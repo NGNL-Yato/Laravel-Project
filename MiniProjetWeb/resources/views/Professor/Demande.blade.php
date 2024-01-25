@@ -14,11 +14,11 @@
                         <p><strong>Envoyé par:</strong> {{ $demande->user->email}}</p>
                         <p><strong>Envoyé à:</strong> {{ $demande->professeur ? $demande->professeur->user->email : 'No professor selected' }}</p>                    
                     </div>
-                    @if($demande->etat_demande == 'En attente')
+                    @if($demande->etat_demande == 'En cours de Traitement')
                     <button class="Submit-Button" onclick="openModal('response-form-{{ $demande->id }}')">Répondre</button>
                     @endif
                 </div>
-                @if($demande->etat_demande == 'En attente')
+                @if($demande->etat_demande == 'En cours de Traitement')
                     <div class="demande-card">
                         <div class="demande-content">
                             <h3>{{  $demande->type_demande }}</h3>

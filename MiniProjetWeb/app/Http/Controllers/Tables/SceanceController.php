@@ -80,7 +80,7 @@ class SceanceController extends Controller
         $classes = Classe::where('id_filiere', $filiere->id)->get();
         $sceances = Sceance::whereIn('id_class', $classes->pluck('id'))->get();
 
-        return view('Sector_responsible.Emploi', compact('sceances'));
+        return view('sector_responsible.emploidutemps', compact('sceances'));
     }
     public function showCoursesForProf(Request $request)
     {

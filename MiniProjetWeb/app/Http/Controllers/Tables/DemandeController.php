@@ -71,7 +71,7 @@ class DemandeController extends Controller
 
         Demande::create($validatedData);
 
-        return redirect()->route('sector_responsible.store')->with('success', 'Demande added successfully');
+        return redirect()->route('Professor.Demande.store')->with('success', 'Demande added successfully');
     }
     public function showChefFiliereDemandes(Request $request)
     {

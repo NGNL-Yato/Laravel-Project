@@ -48,18 +48,22 @@ class ResponseController extends Controller
     public function showStudentResponses(Request $request)
     {
         $userId = Auth::id();
-        $responses = Response::whereHas('demande', function ($query) use ($userId) {
+        $responsesofDemande = Response::whereHas('demande', function ($query) use ($userId) {
             $query->where('id_user', $userId);
         })->get();
+        $responses = Response::where('user_id', $userId)->get();
+        $responses = $responsesofDemande->merge($responses);
 
         return view('student.reponse', compact('responses'));
     }
     public function showProfessorResponses(Request $request)
     {
         $userId = Auth::id();
-        $responses = Response::whereHas('demande', function ($query) use ($userId) {
+        $responsesofDemande = Response::whereHas('demande', function ($query) use ($userId) {
             $query->where('id_user', $userId);
         })->get();
+        $responses = Response::where('user_id', $userId)->get();
+        $reponses = $responsesofDemande->merge($responses);
 
         return view('professor.reponse', compact('responses'));
     }

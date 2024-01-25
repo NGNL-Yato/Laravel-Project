@@ -199,6 +199,8 @@ Route::get('/Emploi', [App\Http\Controllers\Tables\SceanceController::class, 'in
 Route::post('/Emploi', [App\Http\Controllers\Tables\SceanceController::class, 'store'])->name('Emploi.store');
 Route::put('/Emploi/{emploi}', [App\Http\Controllers\Tables\SceanceController::class, 'update'])->name('Emploi.update');
 Route::delete('/Emploi/{emploi}', [App\Http\Controllers\Tables\SceanceController::class, 'destroy'])->name('Emploi.destroy');
+
+
 //chief departement routes
 Route::post('/Chief_Department/Emploi', [App\Http\Controllers\Tables\SceanceController::class, 'storeByChief'])->name('Chief_Department.Emploi.store');
 Route::put('/Chief_Department/Emploi/{emploi}', [App\Http\Controllers\Tables\SceanceController::class, 'updateByChief'])->name('Chief_Department.Emploi.update');
@@ -211,7 +213,7 @@ Route::get('/Sector_responsible/emploidutemps', [App\Http\Controllers\Tables\Sce
 Route::get('/Professor/emploidutemps', [App\Http\Controllers\Tables\SceanceController::class, 'showCoursesForProf'])->name('professor.emploidutemps');
 
 
-//Reponse for all users
+//Emploi for all users
 Route::post('/Professor/Demande', [App\Http\Controllers\Tables\DemandeController::class, 'storeProfessor'])->name('Professor.Demande.store');
 Route::post('/sector_responsible/Demande', [App\Http\Controllers\Tables\ResponseController::class, 'storeChefFiliere'])->name('sector_responsible.Demande.store');
 

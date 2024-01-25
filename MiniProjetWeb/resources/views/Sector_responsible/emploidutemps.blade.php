@@ -43,7 +43,7 @@
         <div class="overlay">
             <div class="event-modal">
                 <div class="add_event hidden-form">
-                    <form method="POST" action="{{ route('Professor.Demande.store') }}">
+                    <form method="POST" action="{{ route('sector_responsible.Demande.store') }}">
                         @csrf
                         <div class="form-group">
                             <p id="DuplicateInfo"></p>
@@ -59,7 +59,7 @@
     </div>
 </div>
 
-@include('Professor.home')
+@include('Sector_responsible.home')
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -102,7 +102,7 @@
                             var year = dateElement.dataset.year;
 
                             // Set the text of the dateInfo paragraph
-                            du.textContent = 'Réservation pour le ' + date +'/'+month+'/'+ year + '  dans la tranche horaire : '+time;
+                            duplicateInfo.textContent = 'Réservation pour le ' + date +'/'+month+'/'+ year + '  dans la tranche horaire : '+time;
 
                             dateInfo.textContent = 'Day Index: ' + dayIndex + ', Time: ' + time + ', Date: ' + date + ', Month: ' + month + ', Year: ' + year;
 

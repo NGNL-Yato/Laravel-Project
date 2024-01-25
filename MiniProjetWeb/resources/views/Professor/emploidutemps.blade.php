@@ -102,7 +102,7 @@
                             var year = dateElement.dataset.year;
 
                             // Set the text of the dateInfo paragraph
-                            du.textContent = 'Réservation pour le ' + date +'/'+month+'/'+ year + '  dans la tranche horaire : '+time;
+                            duplicateInfo.textContent = 'Réservation pour le ' + date +'/'+month+'/'+ year + '  dans la tranche horaire : '+time;
 
                             dateInfo.textContent = 'Day Index: ' + dayIndex + ', Time: ' + time + ', Date: ' + date + ', Month: ' + month + ', Year: ' + year;
 
