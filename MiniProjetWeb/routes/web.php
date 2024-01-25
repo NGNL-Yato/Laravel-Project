@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;// Emploidutemps
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -220,4 +221,34 @@ Route::get('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesControlle
 Route::post('/Professor/annonces', [App\Http\Controllers\Tables\AnnoncesController::class, 'storeForProfessor'])->name('professor.storeAnnonce');
 Route::put('/Professor/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'updateForProfessor'])->name('professor.updateAnnonce');
 Route::delete('/Professor/annonces/{annonce}', [App\Http\Controllers\Tables\AnnoncesController::class, 'destroyForProfessor'])->name('professor.destroyAnnonce');
+
+//Route::get('department-content', [App\Http\Controllers\TableController::class, 'listdepartement'])->name('departemnt.index');
+// routes/web.php
+
+use App\Http\Controllers\TableController;
+
+// ... autres routes ...
+
+Route::get('/departements/{name}', [TableController::class, 'showDepartement'])->name('departements.show');
+
+
+
+// routes/web.php
+
+// routes/web.php
+
+// routes/web.php
+
+use App\Http\Controllers\FiliereController;
+
+Route::get('/filieres', [FiliereController::class, 'index'])->name('filieres.index');
+
+// routes/web.php
+
+use App\Http\Controllers\AnnonceController;
+
+Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonce.index');
+
+
+
 

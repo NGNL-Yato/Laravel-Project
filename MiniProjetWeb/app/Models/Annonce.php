@@ -1,5 +1,7 @@
 <?php
 
+// app/Models/Annonce.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -34,3 +36,4 @@ class Annonce extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 }
+
