@@ -3,48 +3,6 @@
 @section('content')
 <div class="container">
     <div class="filieres_div educational_service-center">
-        <!-- Table for Showing Filieres -->
-        {{-- <table>
-            <thead>
-                <tr>
-                    <th>Nom Filiere</th>
-                    <th>Abréviation</th>
-                    <th>Nom du Département</th>
-                    <th>Type de Formation</th>
-                    <th>Chef de la Filiere</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($filieres as $filiere)
-                <tr class="table-row table-row--chris">
-                    <td class="table-row__td">{{ $filiere->nom_filiere }}</td>
-                    <td class="table-row__td">{{ $filiere->abreviation_nomfiliere }}</td>
-                    <td class="table-row__td">{{ $filiere->departement->nom_departement }}</td>
-                    <td class="table-row__td">{{ $filiere->formation->abreviation_formation }}</td>
-                    <td class="table-row__td">{{ $filiere->professeur->nom }} {{ $filiere->professeur->prenom }}</td>
-                    <td class="table-row__td">
-                        <!-- Edit Button -->
-                        <button class="editFiliereButton" 
-                            data-id="{{ $filiere->id }}"
-                            data-nom-filiere="{{ $filiere->nom_filiere }}"
-                            data-abreviation="{{ $filiere->abreviation_nomfiliere }}"
-                            data-departement-id="{{ $filiere->departement_id }}"
-                            data-formation-id="{{ $filiere->formation_id }}"
-                            data-chef-id="{{ $filiere->id_prof }}">Edit</button>
-
-
-                        <!-- Delete Button -->
-                        <form action="{{ route('filieres.destroy', $filiere->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table> --}}
         <button id="showCreateFiliereForm">Add New Filiere</button>
 
         <table class="table">
@@ -101,7 +59,8 @@
             </tbody>
           </table>
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editFiliereForm" style="display:none;">
+        <div id="editFiliereForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editFiliereFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
@@ -123,11 +82,14 @@
                     @endforeach
                 </select>
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
+
             </form>            
         </div>
-
+    </div>
         <!-- Creation Form -->
-        <div id="createFiliereForm" style="display:none;">
+        <div id="createFiliereForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="createFiliereFormContent" action="{{ route('filieres.store') }}" method="POST">
                 @csrf
                 <input type="text" name="nom_filiere" placeholder="Nom Filiere">
@@ -151,7 +113,7 @@
                 <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
-
+    </div>
         <!-- Button to Show/Hide Creation Form -->
     </div>
 </div>
@@ -185,7 +147,12 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editFiliereForm').style.display = 'block';
         });
     });
-
+    document.querySelectorAll('.cancel-btn').forEach(function(button) {
+        button.addEventListener('click', function() {
+            document.getElementById('createFiliereForm').style.display = 'none';
+            document.getElementById('editFiliereForm').style.display = 'none';
+        });
+    });
     // Show/Hide Create Filiere Form
     document.getElementById('showCreateFiliereForm').addEventListener('click', function() {
         var form = document.getElementById('createFiliereForm');

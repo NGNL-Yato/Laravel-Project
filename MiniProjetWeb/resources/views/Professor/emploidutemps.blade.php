@@ -14,7 +14,7 @@
                         <tr>
                             <th></th> 
                             @php
-                            $times = [' 09h00  -  10h45 ', '  11h00  -  12h45  ', '  13h00  -  14h45  ', '  15h00  -  16h45  ', '  17h00  -  18h45  '];
+                            $times = ['09h00  -  10h45', '11h00  -  12h45', '13h00  -  14h45', '15h00  -  16h45', '17h00  -  18h45'];
                             $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
                             @endphp
                             @foreach($days as $day)
@@ -29,9 +29,8 @@
                             @foreach($days as $index => $day)
                             <td class="emploi-case" data-day="{{ $index }}" data-time="{{ $time }}">
                                 @foreach($sceances as $sceance)
-                                @if($sceance->day == $day && $sceance->time == $time)
-                                {{ $sceance->title }}
-                                @endif
+                                @if($sceance->jour == $index && $sceance->horaire == intval(substr($time, 0, 2)))
+                                {{ $sceance->cours->classe->Numero_groupe }} - {{ $sceance->cours->classe->filiere->abreviation_nomfiliere }} | {{ $sceance->cours->module->nom_module }}                                @endif                                
                                 @endforeach
                             </td>
                             @endforeach
@@ -40,14 +39,14 @@
                     </tbody>
                 </table>
             </div> <!-- .timeline -->
-        <div class="overlay">
+        <div class="overlay" style = "display: none;">
             <div class="event-modal">
                 <div class="add_event hidden-form">
                     <form method="POST" action="{{ route('Professor.Demande.store') }}">
                         @csrf
                         <div class="form-group">
-                            <p id="DuplicateInfo"></p>
-                            <p id="dateInfo">Date :</p>
+                            <h2 id="DuplicateInfo"></h2>
+                            <p id="dateInfo" style ="display: none;">Date :</p>
                             <label for="contenu_demande">Contenu Demande</label>
                             <textarea id="contenu_demande" name="contenu_demande" class="form-control" required></textarea>
                         </div>

@@ -7,34 +7,72 @@ use Illuminate\Http\Request;
 
 class isAdmin
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next)
     {
         if (auth()->check()) {
             $role = auth()->user()->role;
-            $currentRouteName = $request->route()->getName();
-            //Checks if the user is connected o
-            if ($role == 1 && $currentRouteName != 'Student.home') { 
-                return redirect()->route('Student.home');
-            } elseif ($role == 2 && $currentRouteName != 'Professor.home') {
-                return redirect()->route('Professor.home');
-            } elseif ($role == 3 && $currentRouteName != 'Sector_responsible.home') {
-                return redirect()->route('Sector_responsible.home');
-            } elseif ($role == 4 && $currentRouteName != 'Department_chief.home') {
-                return redirect()->route('Department_chief.home');
-            } elseif ($role == 5 && $currentRouteName != 'Educational_Service.home') {
-                return redirect()->route('Educational_Service.home');
-            } elseif ($role == 0 && $currentRouteName != 'auth.home') {
-                return redirect()->route('auth.home');
+            $firstSegment = $request->segment(1);
+
+            $roleMap = [
+                1 => 'Student',
+                2 => 'Professor',
+                3 => 'Sector_responsible',
+                4 => 'Department_chief',
+                5 => 'Educational_Service',
+                0 => 'auth' //Still here by default, can be deleted since its useless or keep it to give him a free hand on all routes later
+            ];
+
+            if (isset($roleMap[$role]) && $firstSegment !== $roleMap[$role]) {
+                return redirect()->route($roleMap[$role] . '.home');
             }
+            //Checks if the first Segment is true else redirect you to the home(all home has been changed to redirect somewhere else)
+            //http://localhost:8000/Educational_Service/home
+            //here Educational_Service is the firstSegment
             return $next($request);
         } else {
             return redirect()->route('welcome');
         }
-        //updated middleware to redirect when not connected to the home page
     }
 }
+
+
+//Potential new middleware
+
+
+// <?php
+// public function handle(Request $request, Closure $next)
+// {
+//     if (auth()->check()) {
+//         $role = auth()->user()->role;
+//         $currentRouteName = $request->route()->getName();
+
+//         $roleMap = [
+//             1 => 'Student',
+//             2 => 'Professor',
+//             3 => 'Sector_responsible',
+//             4 => 'Department_chief',
+//             5 => 'Educational_Service',
+//             0 => 'auth',
+//             // Add other roles here
+//         ];
+
+//         $pages = ['home', 'profile', 'announces']; // Add other page names here
+
+//         if (isset($roleMap[$role])) {
+//             foreach ($pages as $page) {
+//                 $routeName = $roleMap[$role] . '.' . $page;
+//                 if (strpos($currentRouteName, $routeName) === 0) {
+//                     if (Route::has($routeName)) {
+//                         return $next($request);
+//                     } else {
+//                         return redirect()->route($roleMap[$role] . '.home');
+//                     }
+//                 }
+//             }
+//             return redirect()->route($roleMap[$role] . '.home');
+//         }
+//     }
+
+//     return redirect()->route('welcome');
+// }
+//

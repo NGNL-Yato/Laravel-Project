@@ -78,7 +78,8 @@
         
 
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editModuleForm" style="display:none;">
+        <div id="editModuleForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editModuleFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
@@ -92,8 +93,10 @@
                     @endforeach
                 </select>
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
             </form>            
         </div>
+    </div>
 
             <!-- Creation Form for Modules -->
             <div id="createModuleForm" class="modal" style="display:none;">

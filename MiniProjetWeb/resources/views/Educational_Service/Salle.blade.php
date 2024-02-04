@@ -4,8 +4,8 @@
 @section('content')
 <div class="container">
     <div class="salle_div educational_service-center">
-                <!-- Button to Show/Hide Creation Form -->
-                <button id="showCreateSalleForm">Add New Salle</button>
+        <!-- Button to Show/Hide Creation Form -->
+        <button id="showCreateSalleForm">Add New Salle</button>
         <!-- Table for Showing Salles -->
         <table class="table">
             <thead class="table__thead">
@@ -16,15 +16,28 @@
                         <th class="table__th">Nom Departement</th>
                     @endif
                     <th class="table__th">Actions</th>
-                    @if($type != 'departement')
-                        <th class="table__th">Emploi du temps</th>
-                    @endif
                 </tr>
             </thead>
             <tbody class="table__tbody">
                 @foreach($salles as $salle)
                     <tr class="table-row">
-                        <td class="table-row__td">{{ $salle->type_salle }}</td>
+                        <td class="table-row__td">@switch ($salle->type_salle)
+                            @case(1)
+                                TP
+                                @break
+                            @case(2)
+                                Normal
+                                @break
+                            @case(3)
+                                Amphi
+                                @break
+                            @case(4)
+                                Autre
+                                @break
+                            @default
+                                N/A
+                            @endswitch
+                        </td>
                         <td class="table-row__td">{{ $salle->nom_salle }}</td>
                         @if($type == 'departement' || $type == 'default')
                             <td class="table-row__td">{{ optional($salle->departement)->nom_departement ?? 'N/A' }}</td>
@@ -34,7 +47,8 @@
                             <button class="editSalleButton" 
                                     data-id="{{ $salle->id }}"
                                     data-type-salle="{{ $salle->type_salle }}"
-                                    data-nom-salle="{{ $salle->nom_salle }}">
+                                    data-nom-salle="{{ $salle->nom_salle }}"
+                                    data-id-departement="{{ $salle->id_departement }}">
                                 <svg version="1.1" class="table-row__edit" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" data-toggle="tooltip" data-placement="bottom" title="Edit">
                                     <g>
                                         <g>
@@ -84,46 +98,57 @@
                                 </button>
                             </form>
                         </td>
-                        <td class="table-row__td">
-                            @if($type != 'departement')
-                                <button href="{{ route('emploidutemps.index', $salle->id) }}">Emploi du temps</button>
-                            @endif
-                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
         
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editSalleForm" style="display:none;">
+        <div id="editSalleForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editSalleFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
-                <input type="text" id="editTypeSalle" name="type_salle">
+                <select id="editTypeSalle" name="type_salle">
+                    <option value="1">TP</option>
+                    <option value="2">Normal</option>
+                    <option value="3">Amphi</option>
+                    <option value="4">Autre</option>
+                </select>
                 <input type="text" id="editNomSalle" name="nom_salle">
                 @if($type == 'departement' || $type == 'default')
                     <!-- Form for Selecting a Department -->
                     <label for="editDepartement">Choose a Department:</label>
                     <select name="id_departement" id="departement" class="form-control">
+                        <option value="">Select Department</option>
                         @foreach($departements as $departement)
                             <option value="{{ $departement->id }}">{{ $departement->nom_departement }}</option>
                         @endforeach
                     </select>
                 @endif
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
             </form>            
+            </div>
         </div>
 
         <!-- Creation Form -->
-        <div id="createSalleForm" style="display:none;">
+        <div id="createSalleForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="createSalleFormContent" action="{{ route('salle.store') }}" method="POST">
                 @csrf
-                <input type="text" name="type_salle" placeholder="Type Salle">
+                <select id="createTypeSalle" name="type_salle">
+                    <option value="1">TP</option>
+                    <option value="2">Normal</option>
+                    <option value="3">Amphi</option>
+                    <option value="4">Autre</option>
+                </select>
                 <input type="text" name="nom_salle" placeholder="Nom Salle">
                 @if($type == 'departement' || $type == 'default')
                     <!-- Form for Selecting a Department -->
                     <label for="departement">Choose a Department:</label>
                     <select name="id_departement" id="departement" class="form-control">
+                        <option value="">Select Department</option>
                         @foreach($departements as $departement)
                             <option value="{{ $departement->id }}">{{ $departement->nom_departement }}</option>
                         @endforeach
@@ -133,8 +158,7 @@
                 <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
-
-
+        </div>
     </div>
 </div>
 
@@ -151,9 +175,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cancel Button in Create Form
     document.querySelectorAll('.cancel-btn').forEach(function(button) {
         button.addEventListener('click', function() {
-            document.getElementById('createSalleForm').style.display = 'none';
+            if(document.getElementById('editSalleForm').style.display === 'block') {
+                document.getElementById('editSalleForm').style.display = 'none';
+            } else {
+                document.getElementById('createSalleForm').style.display = 'none';
+            }
         });
     });
+
 
     // Edit Salle Functionality
     document.querySelectorAll('.editSalleButton').forEach(function(button) {
@@ -161,10 +190,12 @@ document.addEventListener('DOMContentLoaded', function() {
             var id = button.getAttribute('data-id');
             var typeSalle = button.getAttribute('data-type-salle');
             var nomSalle = button.getAttribute('data-nom-salle');
-
+            var idDepartement = button.getAttribute('data-id-departement'); // Get the ID of the department
+            console.log('idDepartement:', idDepartement);
             // Populate form with existing data
             document.getElementById('editTypeSalle').value = typeSalle;
             document.getElementById('editNomSalle').value = nomSalle;
+            document.getElementById('departement').value = idDepartement; // Set the value to the ID of the department
 
             // Set form action URL
             var form = document.getElementById('editSalleFormContent');

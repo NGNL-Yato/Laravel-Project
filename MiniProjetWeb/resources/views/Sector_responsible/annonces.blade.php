@@ -163,7 +163,7 @@
             document.getElementById("editVisibiliteAnnonce").value = this.dataset.visibiliteAnnonce;
             document.getElementById("editCibleAnnonce").value = this.dataset.cibleAnnonce;
             document.getElementById("editTypeAnnonce").value = this.dataset.typeAnnonce;
-            document.getElementById("editAnnonceFormContent").action = "/filiereResponsible/annonce/" + this.dataset.id;
+            document.getElementById("editAnnonceFormContent").action = "/Sector_responsible/annonces/" + this.dataset.id;
             editModal.style.display = "block";
         }
     }

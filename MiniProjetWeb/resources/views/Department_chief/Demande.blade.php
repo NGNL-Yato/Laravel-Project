@@ -17,7 +17,7 @@
                         <p><strong>Envoyé par:</strong> {{ $demande->user->email}}</p>
                         <p><strong>Envoyé à:</strong> {{ $demande->professeur ? $demande->professeur->user->email : 'No professor selected' }}</p>                    
                     </div>
-                    @if($demande->etat_demande == 'En cours de Traitement')
+                    @if($demande->etat_demande == 'En cours de Traitement' && auth()->user()->id != $demande->id_user)
                 <button class="Submit-Button" onclick="openModal('response-form-{{ $demande->id }}')">Répondre</button>
                 @endif
                 </div>

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="all-users-info">
-        <h1>Student Information</h1>
+        <h1>Informations de l'étudiant</h1>
         <div class="info-section">
-            <h3>Name</h3>
+            <h3>Nom</h3>
             <p>{{ $etudiant->Nom }} {{ $etudiant->prenom }}</p>
         </div>
         
@@ -15,17 +15,17 @@
         </div>
         
         <div class="info-section">
-            <h3>User Name</h3>
+            <h3>Nom utilisateur </h3>
             <p>{{ $etudiant->user->name }}</p>
         </div>
         
         <div class="info-section">
-            <h3>User Email</h3>
+            <h3>Email</h3>
             <p>{{ $etudiant->user->email }}</p>
         </div>
 
         <div class="info-section">
-            <h3>Filiere</h3>
+            <h3>Filière</h3>
             <p>{{ $etudiant->classe->filiere->nom_filiere }}</p>
         </div>
 

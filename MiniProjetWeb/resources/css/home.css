@@ -15,9 +15,12 @@
 
 .form-container {
     background-color: white;
-    margin: 10% auto;
+    margin: auto;
+    margin-top: 5%;
     padding: 20px;
-    width: 80%;
+    width: 400px;
+    border-radius: 10px;
+    align-items: center;
 }
 td {
     border: 1px solid #000;
@@ -40,7 +43,9 @@ td {
     margin: 10px;
     text-align: center;
 }
-
+.form_current_content{
+    align-items: center;
+}
 .link-block {
     display: block;
     padding: 20px;

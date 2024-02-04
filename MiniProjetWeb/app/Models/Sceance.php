@@ -34,4 +34,7 @@ class Sceance extends Model
     {
         return $this->belongsTo(Salle::class, 'id_salle');
     }
+    public function cours() {
+        return $this->belongsTo(Cours::class, 'id_cours');
+    }
 }

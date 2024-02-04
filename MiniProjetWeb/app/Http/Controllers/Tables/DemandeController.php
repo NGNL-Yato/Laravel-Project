@@ -63,9 +63,10 @@ class DemandeController extends Controller
     public function showProfessor(Request $request)
     {
         $userId = Auth::id();
-        $subjects = ['Demande de changement de groupe de TP'];
         $professor = Professeur::where('id_user',$userId)->first();
-        $demandes = Demande::where('id_prof', $professor->id)->whereIn('type_demande', $subjects)->get();
+        $demandes = Demande::where('id_prof', $professor->id)->get();
+        $demandesUser = Demande::where('id_user', $userId)->get();
+        $demandes = $demandes->merge($demandesUser);
         return view('Professor.Demande', compact('professor', 'demandes'));
     }
     public function storeProfessor(Request $request)

@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Set form action URL
         var form = document.getElementById('editAnnonceFormContent');
-        form.action = '/path-to-update-endpoint/' + id;
+        form.action = '/Educational_Service/annonces/' + id;
 
         // Show the edit modal
         editModal.style.display = 'block';

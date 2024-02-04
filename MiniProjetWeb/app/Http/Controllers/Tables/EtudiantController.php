@@ -15,12 +15,15 @@ class EtudiantController extends Controller
         $etudiants = Etudiant::with(['classe', 'user'])->get();
         $classes = Classe::with('filiere')->get();
         // Fetch only users with id == 1 and not already linked to an etudiant
-        $users = User::where('role', 1)->get();
+        $etudiantUserIds = $etudiants->pluck('user.id')->toArray();
+        $users = User::where('role', 1)
+                    ->whereNotIn('id', $etudiantUserIds)
+                    ->get();
         
         return view('educational_service.etudiant', compact('etudiants', 'classes', 'users'));
     }
     public function store(Request $request)
-    {
+    {   
         $delegueValue = $request->has('delegue') ? true : false;
         $validatedData = $request->validate([
             'CNE' => 'required|string|unique:etudiants,CNE',
@@ -39,20 +42,18 @@ class EtudiantController extends Controller
         return redirect()->route('etudiant.index')->with('success', 'Etudiant created successfully');
     }
     
-    public function update(Request $request, $id)
+    public function update(Request $request, Etudiant $etudiant)   
     {
         $delegueValue = $request->has('delegue') ? true : false;
-    
         $validatedData = $request->validate([
-            'CNE' => 'required|string|unique:etudiants,CNE,' . $id,
+            'CNE' => 'required|string|unique:etudiants,CNE,' . $etudiant->id,
             'Nom' => 'required|string',
             'prenom' => 'required|string',
             'id_user' => 'required|exists:users,id',
             'id_class' => 'required|exists:classes,id',
         ]);
         $validatedData['delegue'] = $delegueValue;
-        $etudiant = Etudiant::findOrFail($id);
-        $etudiant->update($validatedData);
+        $etudiant->update($validatedData);          
         return redirect()->route('etudiant.index')->with('success', 'Etudiant updated successfully');
     }
     

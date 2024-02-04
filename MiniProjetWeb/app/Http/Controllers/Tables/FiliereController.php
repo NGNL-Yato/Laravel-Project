@@ -37,7 +37,7 @@ class FiliereController extends Controller
         // Update the user's role to 3 (chef de filiere)
         $filiere->professeur->user->update(['role' => 3]);
 
-        return redirect()->route('filieres.index')->with('success', 'Filiere created successfully');
+        return redirect()->route('filiere.index')->with('success', 'Filiere created successfully');
     }
 
     public function update(Request $request, $id)

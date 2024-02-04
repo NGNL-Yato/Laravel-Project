@@ -107,7 +107,7 @@ class AnnoncesController extends Controller
     public function annoncesForGeneral()
     {
         $annonces = Annonce::where('cible_annonce', 'General')->where('visibilite_annonce', 'visible')->get();
-        return view('annonces.annoncesForGeneral', compact('annonces'));
+        return view('welcome', compact('annonces'));
     }
 
     // Display announcements for Etudiants
@@ -222,11 +222,16 @@ class AnnoncesController extends Controller
             'id_class' => 'nullable|exists:classes,id',
             'id_user' => 'required|exists:users,id',
         ]);
+
+        $annonce = Annonce::findOrFail($id);
+
         if (!$request->has('id_class')) {
             $validatedData['id_class'] = null;
         }
-        Annonce::create($validatedData);
-        return redirect()->route('sector_responsible.annonces')->with('success', 'Annonce added successfully');
+
+        $annonce->update($validatedData);
+
+        return redirect()->route('sector_responsible.annonces')->with('success', 'Annonce updated successfully');
     }
     public function destroyForChefDeFiliere($id)
     {

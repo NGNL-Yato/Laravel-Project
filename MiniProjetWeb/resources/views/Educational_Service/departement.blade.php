@@ -46,7 +46,8 @@
             </tbody>
         </table>
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editDepForm" style="display:none;">
+        <div id="editDepForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editDepFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
@@ -57,11 +58,14 @@
                     @endforeach
                 </select>
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
             </form>            
+        </div>
         </div>
 
         <!-- Creation Form -->
-        <div id="createDepForm" style="display:none;">
+        <div id="createDepForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="createDepFormContent" action="{{ route('departements.store') }}" method="POST">
                 @csrf
                 <input type="text" name="nom_departement" placeholder="Nom Departement">
@@ -73,6 +77,7 @@
                 <button type="submit">Create</button>
                 <button type="button" class="cancel-btn">Cancel</button>
             </form>
+        </div>
         </div>
 
         <!-- Button to Show/Hide Creation Form -->

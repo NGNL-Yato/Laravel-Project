@@ -35,7 +35,7 @@ class SalleController extends Controller
     public function store(Request $request) // Add
     {
         $validatedData = $request->validate([
-            'type_salle' => 'required|string',
+            'type_salle' => 'required|string', // 1 - TP 2 - Normal 3 - Amphi 4 - Autre
             'nom_salle' => 'required|string',
             'id_departement' => 'nullable|exists:departements,id', // Updated this line
         ]);

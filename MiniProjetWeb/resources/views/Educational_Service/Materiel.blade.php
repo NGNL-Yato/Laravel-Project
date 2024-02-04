@@ -96,7 +96,8 @@
         
 
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editMaterielForm" style="display:none;">
+        <div id="editMaterielForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editMaterielFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
@@ -120,11 +121,15 @@
                         @endforeach
                     </select>
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
+    </div>
+
 
         <!-- Creation Form -->
-        <div id="createMaterielForm" style="display:none;">
+        <div id="createMaterielForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="createMaterielFormContent" action="{{ route('materiel.store') }}" method="POST">
                 @csrf
                 <select id="editTypeMateriel" name="type_materiel">
@@ -148,10 +153,10 @@
                     @endforeach
                 </select>
                 <button type="submit">Create</button>
-                <button type="button" salle="cancel-btn">Cancel</button>
+                <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
-
+    </div>
     </div>
 </div>
 
@@ -169,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.cancel-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             document.getElementById('createMaterielForm').style.display = 'none';
+            document.getElementById('editMaterielForm').style.display = 'none';
         });
     });
 

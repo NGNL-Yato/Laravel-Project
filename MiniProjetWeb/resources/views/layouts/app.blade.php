@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Factulté des Sciences et Technique de Tanger</title>
 
     <!-- Fonts -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -85,7 +85,6 @@
     </header>               
     <main class="py-4">
         @yield('content')
-        
         <!-- Calls the layout thats gonna be added here -->
     </main>
     </div>

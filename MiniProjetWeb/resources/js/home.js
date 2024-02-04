@@ -10,9 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     var toggleButton = document.getElementById('toggleFormButton');
     var formLayout = document.getElementById('formLayout');
     var formContainer = document.querySelector('.form-container'); // Assuming your form is in a container with this class
-    var demandeBtn = document.getElementById("faireDemande")
+    var demandeBtn = document.getElementById("faireDemande");
+    var modalElm = document.getElementById('modal-Content');
+
     toggleButton.addEventListener('click', function () {
         formLayout.style.display = 'block';
+        modalElm.style.display = 'block';   
+        console.log(modalElm)
+
     });
 
     demandeBtn.addEventListener('click', function () {
@@ -44,8 +49,13 @@ function showEditForm(userId, userName, userEmail, userRole) {
     form.style.display = 'block';
 }
 function hideEditForm() {
-    console.log(editForm)
-    document.getElementById('editForm').style.display = 'none'; 
+    console.log('up')
+    if(document.getElementById('editForm').style.display == 'block'){
+        document.getElementById('editForm').style.display = 'none';
+    } else {
+        formLayout.style.display = 'none'; 
+        document.getElementById('modal-Content').style.display = 'none';   
+    }
 }
 document.addEventListener('DOMContentLoaded', function() {
     var editButtons = document.querySelectorAll('.edit-btn');
@@ -58,8 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
             showEditForm(userId, userName, userEmail, userRole);
         });
     });
-});
-document.addEventListener('DOMContentLoaded', function() {
     var cancelButtons = document.querySelectorAll('.cancel-btn');
     cancelButtons.forEach(function(button) {
         button.addEventListener('click', function() {

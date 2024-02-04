@@ -14,7 +14,7 @@
                         <tr>
                             <th></th> 
                             @php
-                            $times = [' 09h00  -  10h45 ', '  11h00  -  12h45  ', '  13h00  -  14h45  ', '  15h00  -  16h45  ', '  17h00  -  18h45  '];
+                            $times = ['09h00  -  10h45', '11h00  -  12h45', '13h00  -  14h45', '15h00  -  16h45', '17h00  -  18h45'];
                             $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
                             @endphp
                             @foreach($days as $day)
@@ -29,8 +29,8 @@
                             @foreach($days as $index => $day)
                             <td class="emploi-case" data-day="{{ $index }}" data-time="{{ $time }}">
                                 @foreach($sceances as $sceance)
-                                @if($sceance->day == $day && $sceance->time == $time)
-                                {{ $sceance->title }}
+                                @if($sceance->jour == $index && $sceance->horaire == intval(substr($time, 0, 2)))
+                                {{ $sceance->cours->module->nom_module }}
                                 @endif
                                 @endforeach
                             </td>
@@ -40,25 +40,28 @@
                     </tbody>
                 </table>
             </div> <!-- .timeline -->
-        <div class="overlay">
-            <div class="event-modal">
-                <div class="add_event hidden-form">
-                    <form method="POST" action="{{ route('Professor.Demande.store') }}">
-                        @csrf
-                        <div class="form-group">
-                            <p id="DuplicateInfo"></p>
-                            <p id="dateInfo">Date :</p>
-                            <label for="contenu_demande">Contenu Demande</label>
-                            <textarea id="contenu_demande" name="contenu_demande" class="form-control" required></textarea>
-                        </div>
-                        <input type="hidden" id="dateInfoInput" name="dateInfo">
-                    <button type="submit" id="submitButton">Submit</button>                
-                </form>
-            </div>
         </div>
     </div>
 </div>
 
 @include('Student.home')
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var firstDayDate = new Date();
+    firstDayDate.setHours(0, 0, 0, 0); // reset the time
+    while (firstDayDate.getDay() !== 1) { //start with the monday 
+        firstDayDate.setDate(firstDayDate.getDate() - 1);
+    }
+
+    var dateElements = document.querySelectorAll('.date');
+
+    dateElements.forEach((dateElement, index) => {
+        var date = new Date(firstDayDate);
+        date.setDate(date.getDate() + index);
+        var options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        dateElement.textContent = new Intl.DateTimeFormat('fr-FR', options).format(date);
+    });
+});
+</script>
 @endsection

@@ -22,7 +22,7 @@
                 <div id="response-form-{{ $demande->id }}" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal('response-form-{{ $demande->id }}')">&times;</span>
-                        <form action="{{ route('department_chief.Demande.store') }}" method="POST">
+                        <form action="{{ route('sector_responsible.Demande.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="demande_id" value="{{ $demande->id }}">
                             <textarea name="content" required></textarea>

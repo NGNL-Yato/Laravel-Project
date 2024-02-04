@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class RegisterController extends Controller
 {
@@ -30,16 +33,32 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::EDUCATIONAL_SERVICE_USERS;
+public function register(Request $request)
+{
+    $this->validator($request->all())->validate();
 
+    event(new Registered($user = $this->create($request->all())));
+
+    // The following line is commented out to prevent auto-login
+    // $this->guard()->login($user);
+
+    if ($response = $this->registered($request, $user)) {
+        return $response;
+    }
+
+    return $request->wantsJson()
+                ? new JsonResponse([], 201)
+                : redirect($this->redirectPath());
+}
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //$this->middleware('guest');
-    }
+    // public function __construct()
+    // {
+    //     //$this->middleware('guest');
+    // }
 
     /**
      * Get a validator for an incoming registration request.
@@ -53,8 +72,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'integer'],
         ]);
     }
+    //Redirect you to the Educational_Service user since its the one whose creating accounts 
+    // localy in hes home page (users section in our case)
         protected function redirectTo()
     {
         return route('Educational_Service.users');
@@ -72,6 +94,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => $data['role']
         ]);
     }
 }

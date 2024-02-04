@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="all-users-info">
-        <h1>Professor Information</h1>
+        <h1>Informations du Professeur</h1>
         <div class="info-section">
-            <h3>Name</h3>
+            <h3>Nom</h3>
             <p>{{ $professeur->nom }} {{ $professeur->prenom }}</p>
         </div>
         
@@ -15,12 +15,12 @@
         </div>
         
         <div class="info-section">
-            <h3>User Name</h3>
+            <h3>Nom Utilisateur</h3>
             <p>{{ $professeur->user->name }}</p>
         </div>
         
         <div class="info-section">
-            <h3>User Email</h3>
+            <h3>Email</h3>
             <p>{{ $professeur->user->email }}</p>
         </div>
 
@@ -40,10 +40,10 @@
 
         @if($professeur->cours && $professeur->cours->count())
             <div class="info-section">
-                <h3>Courses Taught</h3>
+                <h3>Cours</h3>
                 <ul>
                     @foreach($professeur->cours as $cours)
-                        <li>{{ $cours->module->nom_module ?? 'Module not set' }} ({{ $cours->classe->nom_classe ?? 'Class not set' }})</li>
+                        <li>{{ $cours->module->nom_module ?? 'Module not set' }}</li>
                     @endforeach
                 </ul>
             </div>

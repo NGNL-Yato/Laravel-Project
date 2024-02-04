@@ -78,7 +78,8 @@
         
 
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editEtudiantForm" style="display:none;">
+        <div id="editEtudiantForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editEtudiantFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
@@ -98,13 +99,16 @@
                     @endforeach
                 </select>                           
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
+    </div>
 
 
 
         <!-- Creation Form -->
-        <div id="createEtudiantForm" style="display:none;">
+        <div id="createEtudiantForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="createEtudiantFormContent" action="{{ route('etudiant.store') }}" method="POST">
                 @csrf
                 <input type="text" name="CNE" placeholder="CNE">
@@ -131,6 +135,7 @@
                 <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
+    </div>
 
 
 
@@ -151,6 +156,7 @@
     document.querySelectorAll('.cancel-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             document.getElementById('createEtudiantForm').style.display = 'none';
+            document.getElementById('editEtudiantForm').style.display = 'none';
         });
     });
 

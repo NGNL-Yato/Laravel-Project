@@ -79,7 +79,8 @@
         </table>
         
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editForm" style="display:none;">
+        <div id="editForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
@@ -88,11 +89,14 @@
                 <input type="text" id="editPrenom" name="prenom">
                 <input type="number" id="editIdUser" name="id_user">
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
             </form>            
         </div>
+    </div>
 
         <!-- Creation Form -->
-        <div id="createForm" style="display:none;">
+        <div id="createForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="createFormContent" action="{{ route('professeurs.store') }}" method="POST">
                 @csrf
                 <input type="text" name="Code_prof" placeholder="Code Prof">
@@ -111,6 +115,7 @@
                 <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
+    </div>
 
         <!-- Button to Show/Hide Creation Form -->
     </div>
@@ -127,7 +132,7 @@
                 var idUser = this.getAttribute('data-id-user');
 
                 // Populate the edit form
-                var editFormAction = '/professeurs/' + professeurId; // Adjust URL as per your route
+                var editFormAction = '/Educational_Service/professeur/' + professeurId; // Adjust URL as per your route
                 document.getElementById('editFormContent').action = editFormAction;
                 document.getElementById('editCodeProf').value = codeProf;
                 document.getElementById('editNom').value = nom;

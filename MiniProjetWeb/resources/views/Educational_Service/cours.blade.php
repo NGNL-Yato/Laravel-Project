@@ -81,7 +81,8 @@
         
 
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editCoursForm" style="display:none;">
+        <div id="editCoursForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editCoursFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
@@ -102,7 +103,9 @@
                     @endforeach
                 </select>
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
             </form>            
+        </div>
         </div>
 
         <!-- Creation Form -->
@@ -127,6 +130,7 @@
                         @endforeach
                     </select>
                     <button type="submit">Create</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
                     </form>
                 </div>
             </div>
@@ -164,7 +168,12 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editCoursForm').style.display = 'block';
         });
     });
-
+    document.querySelectorAll('.cancel-btn').forEach(function(button) {
+        button.addEventListener('click', function() {
+            document.getElementById('createModuleForm').style.display = 'none';
+            document.getElementById('editCoursForm').style.display = 'none';
+        });
+    });
     // Show/hide create cours form functionality
     var createCoursForm = document.getElementById('createModuleForm');
     var showCreateCoursFormButton = document.getElementById('showCreationCoursForm');

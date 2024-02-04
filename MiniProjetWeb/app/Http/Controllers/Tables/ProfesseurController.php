@@ -38,7 +38,7 @@ class ProfesseurController extends Controller
                 'Code_prof' => $validatedData['Code_prof'],
                 'nom' => $validatedData['nom'],
                 'prenom' => $validatedData['prenom'],
-                'id_user' => $validatedData['teacher_id'] // Make sure this line corresponds to your database schema
+                'id_user' => $validatedData['teacher_id']
             ]);
     
             return redirect()->route('professeurs.index');
@@ -49,13 +49,14 @@ class ProfesseurController extends Controller
     public function update(Request $request, Professeur $professeur)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $professeur->user_id, // Assuming user_id is the FK in professeurs
+            'Code_prof' => 'required|unique:professeurs,Code_prof,' . $professeur->id,
+            'nom' => 'required',
+            'prenom' => 'required',
         ]);
-    
+
         $professeur->update($validatedData);
         return redirect()->route('professeurs.index');
-    }    
+    }   
     public function destroy(Professeur $professeur)
     {
         $professeur->delete();

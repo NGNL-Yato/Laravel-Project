@@ -241,8 +241,12 @@ main {
 
 .announcements  .announcements-posts{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+
 }
 
 .section-title {
@@ -631,21 +635,22 @@ div .section-title {
 /* Emploi du temps */
 
 #emploiSection {
-    margin-left: 5rem;
+    margin-left: 0rem;
     border :0;
     width: 100%;
     height: 100%;
     top: 0;
     right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
 #emploiSection .layer-form {
     position: fixed;
     width: 100%;
     height: 100%;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -700,12 +705,10 @@ div .section-title {
 #emploiSection .layer-form.show {
     visibility: visible;
 }
-
 .emploi-temps {
     border-collapse: collapse;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
+    min-width: 100%;
 }
 
 .emploi-temps, .emploi-temps th, .emploi-temps td {
@@ -715,23 +718,23 @@ div .section-title {
 .emploi-temps th {
     background-color: #429ef5;
 }
-
-.emploi-temps td:hover {
-    background-color: aquamarine;
-    transition: .3s;
+.emploi-temps th {
+    width: 120px;
+    height: 40px;
+    text-align: center; /* Center aligns the text */
 }
-
-.emploi-temps th, .emploi-temps td {
-    width: 100px;
-    height: 50px;
-    text-align: center;
-     /* Center aligns the text */
+.emploi-temps td {
+    width: 120px;
+    height: 55px;
+    text-align: center; /* Center aligns the text */
 }
 .emploi-temps th:empty, .emploi-temps td:empty {
     background-color: transparent;
     border: none !important;
 }
-
+.main_container {
+    height: 150px;
+}
 .WebSiteLogo img {
     width: auto; /* Adjust width automatically to maintain aspect ratio */
     height: auto; /* Adjust height automatically to maintain aspect ratio */
@@ -889,12 +892,12 @@ div .section-title {
 /* Contenaire de l'annonce */
 .annonce-card, .demande-card{
     border-radius: 15px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     padding: 15px;
     position: relative;
     width: 300px; /* Set a fixed width */
     max-width: 100%; /* Ensure it doesn't overflow its container */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Optional: Adds a subtle shadow */
     background-color: #87c5ff;
 }
 
@@ -959,6 +962,8 @@ div .section-title {
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */
     border-radius: 10px; /* Rounded corners */
+    animation-name: animatetop;
+    animation-duration: 0.4s;
 }
 .modal-content button:hover {
     background-color: #45a049;
@@ -1074,4 +1079,40 @@ button {
     50% {
         transform: scale(1.2);
     }
+}
+
+
+.overlay {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center; /* This will align the modal vertically center */
+    justify-content: center; /* This will align the modal horizontally center */
+}
+
+.event-modal {
+    padding-top: 10%;
+    padding-left: 20%;
+    width: 50%;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+.event-modal  button:hover {
+    background-color: #45a049;
+}
+.event-modal select, input[type="option"], textarea {
+    width: 100% !important;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
 }

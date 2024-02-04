@@ -51,7 +51,8 @@
         </table>
 
         <!-- Edit Form (Hidden Initially) -->
-        <div id="editDescriptionForm" style="display:none;">
+        <div id="editDescriptionForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="editDescriptionFormContent" action="" method="POST">
                 @csrf
                 @method('PUT')
@@ -63,11 +64,15 @@
                     @endforeach
                 </select>
                 <button type="submit">Update</button>
+                <button type="button" class="cancel-btn">Cancel</button>
+
             </form>            
         </div>
+    </div>
 
         <!-- Creation Form -->
-        <div id="createDescriptionForm" style="display:none;">
+        <div id="createDescriptionForm" class="modal" style="display:none;">
+            <div class="modal-content">
             <form id="createDescriptionFormContent" action="{{ route('description_formation.store') }}" method="POST">
                 @csrf
                 <input type="text" name="objectif_text" placeholder="Objectif Text">
@@ -81,6 +86,7 @@
                 <button type="button" class="cancel-btn">Cancel</button>
             </form>
         </div>
+    </div>
 
 
     </div>
@@ -100,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.cancel-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             document.getElementById('createDescriptionForm').style.display = 'none';
+            document.getElementById('editDescriptionForm').style.display = 'none';
         });
     });
 

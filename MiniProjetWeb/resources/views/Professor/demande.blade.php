@@ -6,19 +6,6 @@
         <!-- Table for Showing Demandes -->
         <div class="demandes-container">
             @foreach($demandes as $demande)
-                <div class="demande-card">
-                    <div class="demande-content">
-                        <h3>{{  $demande->type_demande }}</h3>
-                        <p class="demande-text">{{ $demande->contenu_demande }}</p>
-                        <p><strong>Status:</strong> {{ $demande->etat_demande }}</p>
-                        <p><strong>Envoyé par:</strong> {{ $demande->user->email}}</p>
-                        <p><strong>Envoyé à:</strong> {{ $demande->professeur ? $demande->professeur->user->email : 'No professor selected' }}</p>                    
-                    </div>
-                    @if($demande->etat_demande == 'En attente')
-                    <button class="Submit-Button" onclick="openModal('response-form-{{ $demande->id }}')">Répondre</button>
-                    @endif
-                </div>
-                @if($demande->etat_demande == 'En attente')
                     <div class="demande-card">
                         <div class="demande-content">
                             <h3>{{  $demande->type_demande }}</h3>
@@ -27,7 +14,9 @@
                             <p><strong>Envoyé par:</strong> {{ $demande->user->email}}</p>
                             <p><strong>Envoyé à:</strong> {{ $demande->professeur ? $demande->professeur->user->email : 'No professor selected' }}</p>                    
                         </div>
+                        @if($demande->etat_demande == 'En cours de Traitement' && $demande->id_user != auth()->user()->id)
                         <button class="Submit-Button" onclick="openModal('response-form-{{ $demande->id }}')">Répondre</button>
+                        @endif
                     </div>
                 <div id="response-form-{{ $demande->id }}" class="modal">
                     <div class="modal-content">
@@ -44,7 +33,6 @@
                         </form>
                     </div>
                 </div>
-                @endif
             @endforeach
         </div>
     </div>
