@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 
 
@@ -6,10 +7,13 @@
 /* ------------------------------------------------------------------------------------------------------------*/
 
 //Users.blade.php Functions 
+=======
+>>>>>>> Stashed changes
 document.addEventListener('DOMContentLoaded', function () {
     var toggleButton = document.getElementById('toggleFormButton');
     var formLayout = document.getElementById('formLayout');
     var formContainer = document.querySelector('.form-container'); // Assuming your form is in a container with this class
+<<<<<<< Updated upstream
     var demandeBtn = document.getElementById("faireDemande");
     var modalElm = document.getElementById('modal-Content');
 
@@ -22,6 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     demandeBtn.addEventListener('click', function () {
         formLayout.style.display = 'block';
+=======
+
+    toggleButton.addEventListener('click', function () {
+        formLayout.style.display = 'block';
+>>>>>>> Stashed changes
     });
 
     document.addEventListener('click', function (event) {
@@ -49,6 +58,7 @@ function showEditForm(userId, userName, userEmail, userRole) {
     form.style.display = 'block';
 }
 function hideEditForm() {
+<<<<<<< Updated upstream
     console.log('up')
     if(document.getElementById('editForm').style.display == 'block'){
         document.getElementById('editForm').style.display = 'none';
@@ -56,6 +66,10 @@ function hideEditForm() {
         formLayout.style.display = 'none'; 
         document.getElementById('modal-Content').style.display = 'none';   
     }
+=======
+    console.log(editForm)
+    document.getElementById('editForm').style.display = 'none'; 
+>>>>>>> Stashed changes
 }
 document.addEventListener('DOMContentLoaded', function() {
     var editButtons = document.querySelectorAll('.edit-btn');
@@ -68,6 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
             showEditForm(userId, userName, userEmail, userRole);
         });
     });
+<<<<<<< Updated upstream
+=======
+});
+document.addEventListener('DOMContentLoaded', function() {
+>>>>>>> Stashed changes
     var cancelButtons = document.querySelectorAll('.cancel-btn');
     cancelButtons.forEach(function(button) {
         button.addEventListener('click', function() {
@@ -75,6 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+<<<<<<< Updated upstream
 
 
 
+=======
+>>>>>>> Stashed changes

@@ -15,12 +15,18 @@
 
 .form-container {
     background-color: white;
+<<<<<<< Updated upstream
     margin: auto;
     margin-top: 5%;
     padding: 20px;
     width: 400px;
     border-radius: 10px;
     align-items: center;
+=======
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+>>>>>>> Stashed changes
 }
 td {
     border: 1px solid #000;
@@ -28,6 +34,7 @@ td {
 .hidden-edit-form {
     display: none;
 }
+<<<<<<< Updated upstream
 /* .container {
     display: flex;
     justify-content: center;
@@ -79,3 +86,5 @@ td {
     justify-content: center;
 } */
 /* >>>>>>> 6500a077661ba893bf5e56aa1c243c31b1b0ea3d */
+=======
+>>>>>>> Stashed changes

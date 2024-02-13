@@ -33,6 +33,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::EDUCATIONAL_SERVICE_USERS;
+<<<<<<< Updated upstream
 public function register(Request $request)
 {
     $this->validator($request->all())->validate();
@@ -50,15 +51,24 @@ public function register(Request $request)
                 ? new JsonResponse([], 201)
                 : redirect($this->redirectPath());
 }
+=======
+>>>>>>> Stashed changes
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+<<<<<<< Updated upstream
     // public function __construct()
     // {
     //     //$this->middleware('guest');
     // }
+=======
+    public function __construct()
+    {
+        //removed the middlewar to let the admin create
+    }
+>>>>>>> Stashed changes
 
     /**
      * Get a validator for an incoming registration request.
@@ -94,7 +104,11 @@ public function register(Request $request)
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+<<<<<<< Updated upstream
             'role' => $data['role']
+=======
+            'role' => $data['user_role'], // Assuming you have a 'role' field in your users table
+>>>>>>> Stashed changes
         ]);
     }
 }

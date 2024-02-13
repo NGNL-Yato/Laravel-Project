@@ -56,6 +56,7 @@ Auth::routes();
 //          // Other Educational Service routes...
 //      });
 
+<<<<<<< Updated upstream
 Route::middleware(['isAdmin'])->group(function () {
 Route::get('auth/home', [App\Http\Controllers\Auth\HomeController::class, 'home'])->name('auth.home');
 Route::get('Professor/home', [App\Http\Controllers\Professor\HomeController::class, 'home'])->name('Professor.home');
@@ -66,12 +67,17 @@ Route::get('Department_chief/home', [App\Http\Controllers\Department_chief\HomeC
 
 
 //Users View for the Educational_Service View
+=======
+
+//Educational_Service Routes for Users
+>>>>>>> Stashed changes
 Route::get('Educational_Service/users', [App\Http\Controllers\Tables\UserController::class, 'listUsers'])->name('Educational_Service.users');
 Route::delete('/users/{user}', [App\Http\Controllers\Tables\UserController::class, 'destroy'])->name('user.delete');
 Route::put('/users/{user}', [App\Http\Controllers\Tables\UserController::class, 'update'])->name('user.update');
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
+<<<<<<< Updated upstream
 //Formations View for the Educational_Service View
 Route::get('Educational_Service/formation', [App\Http\Controllers\Tables\FormationController::class,'listALLFormation'])->name('formations.index');
 Route::post('/formation', [App\Http\Controllers\Tables\FormationController::class, 'store'])->name('formations.store');
@@ -285,3 +291,5 @@ Route::get('/Educational_Service/Informations', [App\Http\Controllers\Informatio
 Route::get('/', [App\Http\Controllers\HomeController::class, 'indexWithAnnonces'])->name('welcome');
 
 Route::get('/departements/{departement_id}/filieres/{filiere_id}', [App\Http\Controllers\HomeController::class, 'indexFormation'])->name('departements.filieres.show');
+=======
+>>>>>>> Stashed changes
