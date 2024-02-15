@@ -18,10 +18,6 @@
     <!-- Scripts -->
     @vite(["resources/CSS/home.css"])
     @vite(["resources/js/script.js","resources/CSS/style.css"])
-<<<<<<< Updated upstream
-=======
-    @vite(["resources/CSS/home.css"])
->>>>>>> Stashed changes
 
 </head>
 <body>

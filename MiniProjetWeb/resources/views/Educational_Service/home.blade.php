@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 @section("navLinks")
 <li>
     <a href="{{URL('Educational_Service/indexformations')}}" data-id="emploi" title="emploi" class="tooltip">
@@ -127,32 +126,5 @@
       <span class="link hide">Reponses</span>
     </a>
   </li> 
-=======
-@extends('layouts.app')
-
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@include('Educational_Service.users')
-{{-- To use later when interface is implemented with an onclick event --}}
-{{--Include the Users page to load only the page instead of loading the whole content of the admin--}}
->>>>>>> Stashed changes
 @endsection
 
